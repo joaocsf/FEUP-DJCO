@@ -12,6 +12,7 @@ public class Generator : MonoBehaviour {
     public GameObject backgroundFloor;
     public GameObject wall;
     public GameObject backWall;
+    public GameObject backSolidWall;
     public GameObject[] backgroundDecoration;
 
     public GameObject[] floorObjects;
@@ -66,8 +67,8 @@ public class Generator : MonoBehaviour {
         for (int i = 0; i < tileNumber; i++)
         {
             SpawnObject(backgroundDecoration[Random.Range(0, backgroundDecoration.Length)], parent, i);
-            obj = SpawnObject(backWall, parent, i);
-            obj.transform.localScale = new Vector3(1, 1, floorHeight);
+            obj = SpawnObject((i % 2== 0)? backWall : backSolidWall, parent, i);
+            //obj.transform.localScale = new Vector3(1, 1, floorHeight);
         }
     }
 

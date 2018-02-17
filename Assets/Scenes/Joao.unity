@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44300318, g: 0.49219626, b: 0.57192606, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -164,7 +164,7 @@ Camera:
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
-  orthographic: 0
+  orthographic: 1
   orthographic size: 5
   m_Depth: -1
   m_CullingMask:
@@ -187,13 +187,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 462694914}
-  m_LocalRotation: {x: -0.08715578, y: 0, z: 0, w: 0.9961947}
+  m_LocalRotation: {x: 0.08715578, y: 0, z: 0, w: 0.9961947}
   m_LocalPosition: {x: -4, y: 10, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -10, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 10, y: 0, z: 0}
 --- !u!1 &649963258
 GameObject:
   m_ObjectHideFlags: 0
@@ -314,13 +314,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 984349558}
-  m_LocalRotation: {x: 0.40821788, y: -0.23456968, z: 0.10938163, w: 0.8754261}
+  m_LocalRotation: {x: 0.5, y: 0, z: 0, w: 0.8660254}
   m_LocalPosition: {x: 0, y: 3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+  m_LocalEulerAnglesHint: {x: 60, y: 0, z: 0}
 --- !u!1 &1369186845
 GameObject:
   m_ObjectHideFlags: 0
@@ -397,11 +397,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   floorHeight: 2
   floorWidth: 1
-  tileNumber: 10
+  tileNumber: 13
   backgroundFloor: {fileID: 1413709889537654, guid: 77e7be1a416ac92468b8d58275a64923,
     type: 2}
   wall: {fileID: 1350297343720632, guid: 70951d7b00c091f4ba9996719cf7dca5, type: 2}
-  backWall: {fileID: 1349272003564806, guid: 1dbe64797d23f5f45846038d87df33dc, type: 2}
+  backWall: {fileID: 1553628894107080, guid: c1d41e1c0a8ff044cbda0412259a537a, type: 2}
+  backSolidWall: {fileID: 1230796600836200, guid: 185cacdb272be35489e617b780298487,
+    type: 2}
   backgroundDecoration:
   - {fileID: 1371520585216424, guid: d84799da6406f8c43ac0f7f1b726cd51, type: 2}
   - {fileID: 1653572141523534, guid: b87e925e329651145a1dc66263e8e787, type: 2}
