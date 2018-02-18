@@ -1,0 +1,236 @@
+fileFormatVersion: 2
+guid: 84c38d24d4683db44a39d24274c3cce9
+timeCreated: 1518889015
+licenseType: Free
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: BackWall
+    100002: BackWall_001
+    100004: BackWall_002
+    100006: BackWall_003
+    100008: BackWall_004
+    100010: Base
+    100012: Base_001
+    100014: Base_002
+    100016: Base_003
+    100018: Base_004
+    100020: //RootNode
+    100022: Books
+    100024: Circle
+    100026: Elevator
+    100028: Floor
+    100030: Floor2
+    100032: Floor_002
+    100034: Grass
+    100036: Grass_001
+    100038: Lobby
+    100040: Plant
+    100042: Stairs
+    100044: Study
+    100046: TrapDoor
+    100048: TrapDoorBody
+    100050: Wall
+    100052: Wall_001
+    100054: Cube
+    100056: BackSolidWall
+    400000: BackWall
+    400002: BackWall_001
+    400004: BackWall_002
+    400006: BackWall_003
+    400008: BackWall_004
+    400010: Base
+    400012: Base_001
+    400014: Base_002
+    400016: Base_003
+    400018: Base_004
+    400020: //RootNode
+    400022: Books
+    400024: Circle
+    400026: Elevator
+    400028: Floor
+    400030: Floor2
+    400032: Floor_002
+    400034: Grass
+    400036: Grass_001
+    400038: Lobby
+    400040: Plant
+    400042: Stairs
+    400044: Study
+    400046: TrapDoor
+    400048: TrapDoorBody
+    400050: Wall
+    400052: Wall_001
+    400054: Cube
+    400056: BackSolidWall
+    2100000: None__pallete_png
+    2100002: Material_001__pallete_png
+    2100004: unnamed
+    2100006: None__pallete_png_001
+    2100008: Material_001__pallete_png_001
+    2300000: BackWall
+    2300002: BackWall_001
+    2300004: BackWall_002
+    2300006: BackWall_003
+    2300008: BackWall_004
+    2300010: Base
+    2300012: Base_001
+    2300014: Base_002
+    2300016: Base_003
+    2300018: Base_004
+    2300020: Books
+    2300022: Circle
+    2300024: Elevator
+    2300026: Floor
+    2300028: Floor2
+    2300030: Floor_002
+    2300032: Grass
+    2300034: Grass_001
+    2300036: Lobby
+    2300038: Plant
+    2300040: Stairs
+    2300042: Study
+    2300044: TrapDoor
+    2300046: TrapDoorBody
+    2300048: Wall
+    2300050: Wall_001
+    2300052: Cube
+    2300054: BackSolidWall
+    3300000: BackWall
+    3300002: BackWall_001
+    3300004: BackWall_002
+    3300006: BackWall_003
+    3300008: BackWall_004
+    3300010: Base
+    3300012: Base_001
+    3300014: Base_002
+    3300016: Base_003
+    3300018: Base_004
+    3300020: Books
+    3300022: Circle
+    3300024: Elevator
+    3300026: Floor
+    3300028: Floor2
+    3300030: Floor_002
+    3300032: Grass
+    3300034: Grass_001
+    3300036: Lobby
+    3300038: Plant
+    3300040: Stairs
+    3300042: Study
+    3300044: TrapDoor
+    3300046: TrapDoorBody
+    3300048: Wall
+    3300050: Wall_001
+    3300052: Cube
+    3300054: BackSolidWall
+    4300000: Base_004
+    4300002: Grass_001
+    4300004: BackWall_004
+    4300006: BackWall_003
+    4300008: BackWall_002
+    4300010: BackWall_001
+    4300012: Floor_002
+    4300014: Base_003
+    4300016: Wall_001
+    4300018: Grass
+    4300020: Lobby
+    4300022: Elevator
+    4300024: Study
+    4300026: Base_002
+    4300028: Books
+    4300030: Base_001
+    4300032: Plant
+    4300034: TrapDoor
+    4300036: TrapDoorBody
+    4300038: Stairs
+    4300040: Circle
+    4300042: Floor2
+    4300044: Wall
+    4300046: BackWall
+    4300048: Base
+    4300050: Floor
+    4300052: Cube
+    4300054: BackSolidWall
+    7400000: Default Take
+    9500000: //RootNode
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
