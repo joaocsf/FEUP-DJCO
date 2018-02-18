@@ -1,0 +1,40 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class CameraPosition : MonoBehaviour {
+
+    private List<Transform> transforms = new List<Transform>();
+
+    public float smoothRatio = 2f;
+    public Vector3 compensation = Vector3.zero;
+
+    private Vector3 targetPos = Vector3.zero;
+
+	void Start () {
+	    	
+	}
+    
+    public void AddTransform(Transform t)
+    {
+        transforms.Add(t);
+    }
+    
+    
+	void FixedUpdate () {
+
+        Vector3 center = Vector3.zero;
+
+
+        foreach(Transform t in transforms)
+            center += t.position;
+
+        center.x /= transforms.Count;
+        center.y /= transforms.Count;
+        center.z = -10;
+        targetPos = center + compensation;
+
+        transform.position = Vector3.Lerp(transform.position, targetPos, Time.fixedDeltaTime * smoothRatio);
+
+	}
+}
