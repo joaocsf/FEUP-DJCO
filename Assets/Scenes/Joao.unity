@@ -423,6 +423,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 1467758229110618, guid: 049182c89513eb643b607bbaec17451e, type: 2}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 049182c89513eb643b607bbaec17451e, type: 2}
   m_IsPrefabParent: 0
@@ -500,9 +504,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18a2ea6ebc6d0e245afddf210e1fa820, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  debug: 0
   floorHeight: 2
   floorWidth: 1
   tilesNumber: 10
+  initialFloors: 6
+  generateFloorsAbove: 1
   powerUpChance: 6
   elevatorChance: 48
   brokenChance: 54
@@ -520,11 +527,18 @@ MonoBehaviour:
     type: 2}
   stairsFloor: {fileID: 1750872629654394, guid: 41c5ee0173e03a14ca6a8f015a98c03b,
     type: 2}
+  background: {fileID: 1530145589837700, guid: c0eba502028a2d9408610af55aea99ae, type: 2}
   elevator: {fileID: 1653572141523534, guid: b87e925e329651145a1dc66263e8e787, type: 2}
   backgroundDecoration:
   - {fileID: 1813393791455818, guid: 1ad8a34678a38fc4d9f525a073a8c3a6, type: 2}
   - {fileID: 1196240766379112, guid: c9960f381ce46ce46aee517a2a3143c4, type: 2}
   - {fileID: 1371520585216424, guid: d84799da6406f8c43ac0f7f1b726cd51, type: 2}
+  dayColor: {r: 0, g: 0, b: 1, a: 1}
+  dayColorFloor: 0
+  duskColor: {r: 1, g: 0, b: 0, a: 1}
+  duskColorFloor: 10
+  nightColor: {r: 0, g: 0, b: 0, a: 1}
+  nightColorFloor: 20
 --- !u!4 &1754880830
 Transform:
   m_ObjectHideFlags: 0
