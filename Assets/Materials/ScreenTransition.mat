@@ -66,7 +66,7 @@ Material:
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
-    - _Lerp: 0
+    - _Lerp: 1
     - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1
@@ -75,7 +75,7 @@ Material:
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _UVSec: 0
-    - _UseImage: 0
+    - _UseImage: 1
     - _ZWrite: 1
     m_Colors:
     - _Color: {r: 0.19852942, g: 0.19852942, b: 0.19852942, a: 1}

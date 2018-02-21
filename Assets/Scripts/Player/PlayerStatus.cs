@@ -4,19 +4,21 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class PlayerStatus : MonoBehaviour {
-    public float floorHeight = 1f;
 
     private int playerId = 1;
     private int currentFloor = 0;
-    private Text text;
+    public PlayerUIController controller;
 
     private GameController gameController;
 
 	// Use this for initialization
-	void Start () {
-        gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
-        text = GameObject.Find("Player" + playerId + " Text").GetComponent<Text>();
+	IEnumerator Start () {
+
+        gameController = GameObject.FindObjectOfType<GameController>();
+        yield return new WaitForFixedUpdate();
+        controller = UIManager.instance.createPlayerUI();
     }
+
 	
 	// Update is called once per frame
 	void Update () {
@@ -34,6 +36,6 @@ public class PlayerStatus : MonoBehaviour {
 
     private void UpdateText()
     {
-        text.text = "<b>Player " + playerId + "</b>\n" + currentFloor + "F";
+        controller.SetScoreText("<b>Player " + playerId + "</b>\n" + currentFloor + "F");
     }
 }

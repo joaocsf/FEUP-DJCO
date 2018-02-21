@@ -32,22 +32,9 @@ public class CameraPosition : MonoBehaviour {
 
         Vector3 center = Vector3.zero;
 
-
-        foreach(Transform t in transforms)
-            center += t.position;
-
-        center.x /= transforms.Count;
-        center.y /= transforms.Count;
         center.x = GameController.floorWidth * GameController.tilesNumber / -2;
         center.y = highestFloor * GameController.floorHeight;
-        /*//Testing----
-        center = Vector3.zero;
-        
-        center.y = highestFloor * 2;
-
-        //Testing End------*/
-        center.z = -10;
-
+      
         targetPos = center + compensation;
 
         transform.position = Vector3.Lerp(transform.position, targetPos, Time.fixedDeltaTime * smoothRatio);
