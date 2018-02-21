@@ -86,6 +86,7 @@ GameObject:
   - component: {fileID: 114512680714182298}
   - component: {fileID: 136741675506106242}
   - component: {fileID: 95832053389552468}
+  - component: {fileID: 114185916781365636}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -498,6 +499,18 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114185916781365636
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1467758229110618}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a623291b76b919248ba92c6a1160a752, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  floorHeight: 1
 --- !u!114 &114512680714182298
 MonoBehaviour:
   m_ObjectHideFlags: 1

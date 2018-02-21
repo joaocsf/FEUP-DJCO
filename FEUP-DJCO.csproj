@@ -219,15 +219,21 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\GameController.cs" />
     <Compile Include="Assets\Scripts\Audio\EffectsPlayer.cs" />
     <Compile Include="Assets\Scripts\Audio\MusicPlayer.cs" />
+    <Compile Include="Assets\Scripts\Camera\CameraFX.cs" />
     <Compile Include="Assets\Scripts\Camera\CameraPosition.cs" />
     <Compile Include="Assets\Scripts\Level Generator\Generator.cs" />
     <Compile Include="Assets\Scripts\Player\Movement.cs" />
+    <Compile Include="Assets\Scripts\Player\PlayerStatus.cs" />
     <Compile Include="Assets\Scripts\PowerUps\Elevator.cs" />
     <Compile Include="Assets\Scripts\PowerUps\PowerUp.cs" />
     <Compile Include="Assets\Scripts\PowerUps\PowerUpManager.cs" />
     <Compile Include="Assets\Scripts\PowerUps\Trapdoor.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Shaders\ScreenSwitch.shader" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />

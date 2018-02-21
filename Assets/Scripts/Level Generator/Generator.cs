@@ -39,6 +39,7 @@ public class Generator : MonoBehaviour {
     public GameObject[] backgroundDecoration;
 
     [Header("Background")]
+    public float scale = 3f;
     public Color dayColor = Color.blue;
     public int dayColorFloor = 0;
     public Color duskColor = Color.red;
@@ -93,14 +94,15 @@ public class Generator : MonoBehaviour {
         }
     }
 
+    public void SetHighestFloor(int floor)
+    {
+        highestFloor = floor;
+    }
+
+
+
     // Update is called once per frame
     void Update () {
-        foreach (var player in players)
-        {
-            int floor = Mathf.FloorToInt(player.transform.position.y / floorHeight);
-            highestFloor = Mathf.Max(highestFloor, floor);
-        }
-
         if (currentFloor - highestFloor <= generateFloorsAbove)
         {
             AddFloor();
@@ -208,7 +210,7 @@ public class Generator : MonoBehaviour {
         obj = SpawnObject(background, parent, 0);
         obj.GetComponent<Renderer>().materials[0].color = generateColor();
         obj.transform.localPosition = new Vector3((tilesNumber * floorWidth) / 2f - floorWidth / 2, 3f, floorHeight / 2);
-        obj.transform.localScale = new Vector3((tilesNumber) * floorWidth, floorHeight, 1);
+        obj.transform.localScale = new Vector3((tilesNumber) * floorWidth * scale, floorHeight, 1);
         obj.transform.localEulerAngles = new Vector3(-90f, 0, 0);
 
 
