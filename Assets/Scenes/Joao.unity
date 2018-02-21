@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44300276, g: 0.4921956, b: 0.57192516, a: 1}
+  m_IndirectSpecularColor: {r: 0.44300318, g: 0.49219626, b: 0.57192606, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -521,8 +521,8 @@ MonoBehaviour:
   floorHeight: 2
   floorWidth: 1
   tilesNumber: 10
-  initialFloors: 6
-  generateFloorsAbove: 1
+  initialFloors: 9
+  generateFloorsAbove: 3
   powerUpChance: 6
   elevatorChance: 48
   brokenChance: 54
@@ -546,11 +546,11 @@ MonoBehaviour:
   - {fileID: 1813393791455818, guid: 1ad8a34678a38fc4d9f525a073a8c3a6, type: 2}
   - {fileID: 1196240766379112, guid: c9960f381ce46ce46aee517a2a3143c4, type: 2}
   - {fileID: 1371520585216424, guid: d84799da6406f8c43ac0f7f1b726cd51, type: 2}
-  dayColor: {r: 0, g: 0, b: 1, a: 1}
+  dayColor: {r: 0.080882356, g: 0.34249493, b: 0.64705884, a: 1}
   dayColorFloor: 0
-  duskColor: {r: 1, g: 0, b: 0, a: 1}
+  duskColor: {r: 0.5661765, g: 0.32888192, b: 0.5174147, a: 1}
   duskColorFloor: 10
-  nightColor: {r: 0, g: 0, b: 0, a: 1}
+  nightColor: {r: 0, g: 0.041430023, b: 0.1397059, a: 1}
   nightColorFloor: 20
 --- !u!4 &1754880830
 Transform:
