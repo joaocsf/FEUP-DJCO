@@ -9,7 +9,7 @@ public class Trapdoor : PowerUp {
         immediateUpdate = false;
     }
 
-    public override void Activate()
+    public override void Activate(GameObject player)
     {
         
     }
