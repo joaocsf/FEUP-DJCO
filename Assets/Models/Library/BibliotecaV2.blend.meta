@@ -34,6 +34,12 @@ ModelImporter:
     100052: Wall_001
     100054: Cube
     100056: BackSolidWall
+    100058: Lobby_001
+    100060: Lobby_002
+    100062: Lobby_003
+    100064: Lobby_004
+    100066: Tree
+    100068: TreeDup
     400000: BackWall
     400002: BackWall_001
     400004: BackWall_002
@@ -63,6 +69,12 @@ ModelImporter:
     400052: Wall_001
     400054: Cube
     400056: BackSolidWall
+    400058: Lobby_001
+    400060: Lobby_002
+    400062: Lobby_003
+    400064: Lobby_004
+    400066: Tree
+    400068: TreeDup
     2100000: None__pallete_png
     2100002: Material_001__pallete_png
     2100004: unnamed
@@ -96,6 +108,12 @@ ModelImporter:
     2300050: Wall_001
     2300052: Cube
     2300054: BackSolidWall
+    2300056: Lobby_001
+    2300058: Lobby_002
+    2300060: Lobby_003
+    2300062: Lobby_004
+    2300064: Tree
+    2300066: TreeDup
     3300000: BackWall
     3300002: BackWall_001
     3300004: BackWall_002
@@ -124,6 +142,12 @@ ModelImporter:
     3300050: Wall_001
     3300052: Cube
     3300054: BackSolidWall
+    3300056: Lobby_001
+    3300058: Lobby_002
+    3300060: Lobby_003
+    3300062: Lobby_004
+    3300064: Tree
+    3300066: TreeDup
     4300000: Base_004
     4300002: Grass_001
     4300004: BackWall_004
@@ -152,6 +176,12 @@ ModelImporter:
     4300050: Floor
     4300052: Cube
     4300054: BackSolidWall
+    4300056: Lobby_001
+    4300058: Lobby_002
+    4300060: Lobby_003
+    4300062: Lobby_004
+    4300064: TreeDup
+    4300066: Tree
     7400000: Default Take
     9500000: //RootNode
   externalObjects: {}
