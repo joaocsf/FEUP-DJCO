@@ -8,11 +8,11 @@ public class PowerUpGenerator{
     {
         Debug.Log("Picked up Manager");
         //Check what is players position in game and generates powerup accordingly
-        PowerUp p = new Elevator();
+        PowerUp p = new Elevator(player);
 
         if (p.immediateUpdate)
         {
-            p.Activate(player);
+            p.Activate();
             return null;
         }
         else

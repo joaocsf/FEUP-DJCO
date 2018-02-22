@@ -3,14 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Trapdoor : PowerUp {
-
-    // Use this for initialization
-    void Start () {
+    public Trapdoor(GameObject player) : base(player)
+    {
         immediateUpdate = false;
     }
 
-    public override void Activate(GameObject player)
+    public override void Activate()
     {
-        
+        //TODO
     }
+
+    public override void Update()
+    { }
 }
