@@ -510,7 +510,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b691a63cc26ead54f8f2ed2e77d8c595, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  floorHeight: 1
+  controller: {fileID: 0}
+  timerText: {fileID: 0}
 --- !u!114 &114512680714182298
 MonoBehaviour:
   m_ObjectHideFlags: 1

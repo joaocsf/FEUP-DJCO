@@ -7,7 +7,7 @@ public class PlayerStatus : MonoBehaviour {
 
     private int playerId = 1;
     private int currentFloor = 0;
-    public PlayerUIController controller;
+    private PlayerUIController controller;
     public Text timerText;
     private float secondsCount;
     private int minuteCount;
@@ -26,7 +26,7 @@ public class PlayerStatus : MonoBehaviour {
         secondsCount = 0;
         minuteCount = 0;
         hourCount = 0;
-        UpdateTimerUI();
+        //UpdateTimerUI();
     }
 
 	
@@ -42,7 +42,7 @@ public class PlayerStatus : MonoBehaviour {
             UpdateText();
         }
 
-        UpdateTimerUI();
+        //UpdateTimerUI();
 
     }
 
