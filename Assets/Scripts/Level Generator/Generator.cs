@@ -4,11 +4,15 @@ using UnityEngine;
 public class Generator : MonoBehaviour {
 
     [Header("General")]
+    public bool debug = false;
     public float floorHeight = 1f;
     public float floorWidth = 1f;
     public int tilesNumber = 5;
 
     [Header("Generation")]
+    public int initialFloors = 6;
+    public int generateFloorsAbove = 1;
+    //public int deleteFloorsBelow = 1;
     [Range(0, 100)]
     public int powerUpChance = 5;
     [Range(0, 100)]
@@ -30,29 +34,99 @@ public class Generator : MonoBehaviour {
     public GameObject stairsFloor;
 
     [Header("Background Objects")]
+    public GameObject background;
     public GameObject elevator;
     public GameObject[] backgroundDecoration;
+
+    [Header("Background")]
+    public float scale = 3f;
+    public Color dayColor = Color.blue;
+    public int dayColorFloor = 0;
+    public Color duskColor = Color.red;
+    public int duskColorFloor = 10;
+    public Color nightColor = Color.black;
+    public int nightColorFloor = 20;
 
     private enum TileType { Default, Broken, Stairs, Elevator, PowerUp, BrokenPowerUp }
 
     private int currentFloor = 0;
+    
+    private Gradient gradient = new Gradient();
+    private float gradientEnd = 1f;
+
     private List<GameObject> floors = new List<GameObject>();
     private List<TileType[]> floorTiles = new List<TileType[]>();
     private int[] tilesBlocked;
 
+    private GameObject[] players;
+    private int highestFloor = 0;
+
     void Start () {
+        //Initiate Players
+        players = GameObject.FindGameObjectsWithTag("Player");
+
+        //Initiate Background Gradient
+        GradientColorKey[] colorKeys;
+        GradientAlphaKey[] alphaKeys;
+        gradientEnd *= nightColorFloor;
+
+        colorKeys = new GradientColorKey[3];
+        colorKeys[0].color = dayColor;
+        colorKeys[0].time = dayColorFloor / gradientEnd;
+        colorKeys[1].color = duskColor;
+        colorKeys[1].time = duskColorFloor / gradientEnd;
+        colorKeys[2].color = nightColor;
+        colorKeys[2].time = nightColorFloor / gradientEnd;
+        alphaKeys = new GradientAlphaKey[0];
+        /*alphaKeys[0].alpha = 1.0F;
+        alphaKeys[0].time = 0.0F;
+        alphaKeys[1].alpha = 1.0F;
+        alphaKeys[1].time = 1.0F;*/
+        gradient.SetKeys(colorKeys, alphaKeys);
+
+        Debug.Log(gradient);
+
+        //Initiate Floors
         tilesBlocked = new int[tilesNumber];
-    }
-	
-	// Update is called once per frame
-	void Update () {
-        if (Input.GetKeyDown(KeyCode.Space))
+        for(int i = 0; i < initialFloors; i++)
         {
-            TileType[] tiles = GenerateFloor();
-            InstantiateFloor(tiles);
-            currentFloor++;
+            AddFloor();
         }
     }
+
+    public void SetHighestFloor(int floor)
+    {
+        highestFloor = floor;
+    }
+
+
+
+    // Update is called once per frame
+    void Update () {
+        if (currentFloor - highestFloor <= generateFloorsAbove)
+        {
+            AddFloor();
+            DeleteFloor();
+            if(debug)
+                Debug.Log("New Highest Floor: " + highestFloor);
+        }
+
+    }
+
+    private void AddFloor()
+    {
+        TileType[] tiles = GenerateFloor();
+        InstantiateFloor(tiles);
+        currentFloor++;
+    }
+
+    private void DeleteFloor()
+    {
+        floorTiles.RemoveAt(0);
+        Destroy(floors[0]);
+        floors.RemoveAt(0);
+    }
+
 
     private GameObject SpawnObject(GameObject prefab, Transform parent, int xPosition)
     {
@@ -132,6 +206,13 @@ public class Generator : MonoBehaviour {
         obj.transform.localPosition = new Vector3((tilesNumber * floorWidth) / 2f - floorWidth / 2, 0f, 0f);
         obj.transform.localScale = new Vector3((tilesNumber) * floorWidth, 1, 1);
 
+        //Instantiate background
+        obj = SpawnObject(background, parent, 0);
+        obj.GetComponent<Renderer>().materials[0].color = generateColor();
+        obj.transform.localPosition = new Vector3((tilesNumber * floorWidth) / 2f - floorWidth / 2, 3f, floorHeight / 2);
+        obj.transform.localScale = new Vector3((tilesNumber) * floorWidth * scale, floorHeight, 1);
+        obj.transform.localEulerAngles = new Vector3(-90f, 0, 0);
+
 
         for (int i = 0; i < tilesNumber; i++)
         {
@@ -157,6 +238,11 @@ public class Generator : MonoBehaviour {
         }//*/
     }
 
+    private Color generateColor()
+    {
+         return gradient.Evaluate(currentFloor / gradientEnd);
+    }
+
 
     /**
      * Generates a new floor
@@ -179,14 +265,17 @@ public class Generator : MonoBehaviour {
             tilesBlocked[i] = Mathf.Max(tilesBlocked[i] - 1, 0);
         }
 
-        string str = "[";
-        foreach (var t in tiles)
+        if (debug)
         {
-            str += t;
-            str += ";";
+            string str = "[";
+            foreach (var t in tiles)
+            {
+                str += t;
+                str += ";";
+            }
+            str += "]";
+            Debug.Log(str);
         }
-        str += "]";
-        Debug.Log(str);
         return tiles;
     }
 

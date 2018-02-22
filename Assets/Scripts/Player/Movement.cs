@@ -21,13 +21,14 @@ public class Movement : MonoBehaviour {
     private Rigidbody rb;
     bool jump = false;
 
+    private Animator anim;
+
 
     private float jumpInput = 0f;
 
     public float downRay = 0.1f;
 
-    private bool bool1 = false;
-    private bool bool2 = false;
+    private float scaleX = 1;
 
     private void OnDrawGizmos()
     {
@@ -38,14 +39,14 @@ public class Movement : MonoBehaviour {
         Gizmos.DrawCube(transform.position + Vector3.down * collider.height / 2, new Vector3(collider.radius - 0.01f, 0.05f, 0.1f));
         Gizmos.DrawSphere(transform.position + Vector3.down * collider.height / 2, collider.radius);
         Gizmos.DrawLine(transform.position, transform.position + Vector3.down * downRay);
-        Gizmos.color = bool1 ? Color.green : Color.red;
         Gizmos.DrawWireCube(transform.position + Vector3.left*collider.radius, new Vector3(collider.radius, collider.height-0.1f, 0.1f));
-        Gizmos.color = bool2 ? Color.green : Color.red;
         Gizmos.DrawWireCube(transform.position + Vector3.right*collider.radius, new Vector3(collider.radius, collider.height-0.1f, 0.1f));
     }
 
     private void Start()
     {
+        if (anim == null)
+            anim = GetComponent<Animator>();
         FindObjectOfType<CameraPosition>().AddTransform(transform);
         collider = GetComponent<CapsuleCollider>();
         rb = GetComponent<Rigidbody>();
@@ -94,7 +95,9 @@ public class Movement : MonoBehaviour {
             jump = false;
             velocity.y = jumpSpeed;
         }
-        
+        if (hInput != 0f)
+            scaleX = hInput > 0 ? 1 : -1;
+
         velocity.x = Mathf.Lerp(velocity.x, hInput * speed, acceleration*Time.fixedDeltaTime);
         velocity.x = Mathf.Clamp(velocity.x, -speed, speed);
 
@@ -106,6 +109,11 @@ public class Movement : MonoBehaviour {
             velocity.x = 0;
 
         rb.velocity = velocity;
+
+        anim.SetFloat("XVelo", Mathf.Abs(rb.velocity.x));
+        anim.SetFloat("YVelo", jump? 0 : rb.velocity.y);
+
+        transform.localScale = new Vector3(Mathf.Lerp(transform.localScale.x, scaleX, acceleration*2* Time.deltaTime), 1, 1);
     }
 
     private void OnTriggerEnter(Collider other)

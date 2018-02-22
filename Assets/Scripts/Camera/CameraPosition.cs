@@ -11,6 +11,8 @@ public class CameraPosition : MonoBehaviour {
 
     private Vector3 targetPos = Vector3.zero;
 
+    private int highestFloor = 0;
+
 	void Start () {
 	    	
 	}
@@ -19,19 +21,20 @@ public class CameraPosition : MonoBehaviour {
     {
         transforms.Add(t);
     }
-    
-    
-	void FixedUpdate () {
+
+    public void SetHighestFloor(int floor)
+    {
+        highestFloor = floor;
+    }
+
+
+    void FixedUpdate () {
 
         Vector3 center = Vector3.zero;
 
-
-        foreach(Transform t in transforms)
-            center += t.position;
-
-        center.x /= transforms.Count;
-        center.y /= transforms.Count;
-        center.z = -10;
+        center.x = GameController.floorWidth * GameController.tilesNumber / -2;
+        center.y = highestFloor * GameController.floorHeight;
+      
         targetPos = center + compensation;
 
         transform.position = Vector3.Lerp(transform.position, targetPos, Time.fixedDeltaTime * smoothRatio);
