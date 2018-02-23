@@ -5,11 +5,13 @@ using UnityEngine;
 public abstract class PowerUp
 {
     [HideInInspector] public bool immediateUpdate;
+    [HideInInspector] public bool isOver;
     protected GameObject player;
 
     public PowerUp(GameObject player)
     {
         this.player = player;
+        this.isOver = false;
     }
 
     public abstract void Activate();

@@ -5,7 +5,7 @@ using UnityEngine;
 public class Elevator : PowerUp {
     public Elevator(GameObject player) : base(player)
     {
-        immediateUpdate = true;
+        immediateUpdate = false;
     }
 
     public override void Activate()
@@ -14,6 +14,8 @@ public class Elevator : PowerUp {
         test.y += (float)4.5;
 
         player.transform.localPosition = test;
+
+        this.isOver = true;
     }
 
     public override void Update()
