@@ -1,8 +1,9 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody), typeof(BoxCollider))]
+[RequireComponent(typeof(Rigidbody))]
 public class Movement : MonoBehaviour {
 
     public bool debug = false;
@@ -21,8 +22,9 @@ public class Movement : MonoBehaviour {
     private Rigidbody rb;
     bool jump = false;
 
-    private Animator anim;
+    public bool canControl = false;
 
+    private Animator anim;
 
     private float jumpInput = 0f;
 
@@ -30,6 +32,7 @@ public class Movement : MonoBehaviour {
 
     private float scaleX = 1;
 
+    public List<IPlayerEvents> listeners = new List<IPlayerEvents>();
     private void OnDrawGizmos()
     {
 
@@ -43,8 +46,10 @@ public class Movement : MonoBehaviour {
         Gizmos.DrawWireCube(transform.position + Vector3.right*collider.radius, new Vector3(collider.radius, collider.height-0.1f, 0.1f));
     }
 
-    private void Start()
+    void Start()
     {
+
+
         if (anim == null)
             anim = GetComponent<Animator>();
         FindObjectOfType<CameraPosition>().AddTransform(transform);
@@ -53,6 +58,26 @@ public class Movement : MonoBehaviour {
         speed = defaultSpeed;
         jumpSpeed = defaultJumpSpeed;
         rb.constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionZ;
+
+        int id;
+        int.TryParse(playerID, out id);
+
+        UpdateSortingLayer(transform, id);
+        CanControll(canControl);
+    }
+
+    private void UpdateSortingLayer(Transform transform, int id)
+    {
+        Debug.Log(id + " " + transform.name);
+        SpriteRenderer renderer = transform.GetComponent<SpriteRenderer>();
+        if (renderer != null)
+        {
+            renderer.sortingOrder = id;
+            Debug.Log("FOUND");
+        }
+
+        foreach (Transform t in transform)
+            UpdateSortingLayer(t, id);
     }
 
     private void Update()
@@ -61,6 +86,11 @@ public class Movement : MonoBehaviour {
         {
             jumpInput = jumpReaction;
         }
+    }
+
+    public void AddPlayerEventListener(IPlayerEvents listener)
+    {
+        listeners.Add(listener);
     }
 
 
@@ -73,8 +103,51 @@ public class Movement : MonoBehaviour {
            
     }
 
+    public void AffectRenderer(Transform transform, Action<Renderer> action)
+    {
+
+        action(transform.GetComponent<Renderer>());
+
+        foreach(Transform t in transform)
+        {
+            AffectRenderer(t, action);
+        }
+    }
+
+    public void CanControll(bool state)
+    {
+        canControl = state;
+
+        if(state == true)
+        {
+            listeners.ForEach((listener) => listener.OnControllEnabled());
+        }else
+            listeners.ForEach((listener) => listener.OnControllDisabled());
+
+        foreach(Transform t in transform)
+        {
+            if(t.GetComponent<ParticleSystem>() == null)
+                t.gameObject.SetActive(canControl);
+        }
+
+        rb.isKinematic = !canControl;
+    }
+
+    public void ResetJumpSpeed()
+    {
+        jumpSpeed = defaultJumpSpeed;
+    }
+
+    public void ResetSpeed()
+    {
+        speed = defaultSpeed;
+    }
+
     private void FixedUpdate()
     {
+        if (!canControl)
+            return;
+
         Vector3 velocity = rb.velocity;
         float hInput = Input.GetAxisRaw("Horizontal" + playerID);
         
@@ -109,6 +182,8 @@ public class Movement : MonoBehaviour {
             velocity.x = 0;
 
         rb.velocity = velocity;
+
+        Debug.Log(rb.velocity.x);
 
         anim.SetFloat("XVelo", Mathf.Abs(rb.velocity.x));
         anim.SetFloat("YVelo", jump? 0 : rb.velocity.y);

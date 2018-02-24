@@ -49,7 +49,7 @@ public class PlayerStatus : MonoBehaviour {
 
     private void UpdateText()
     {
-        controller.SetScoreText("<b>Player " + playerId + "</b>\n" + currentFloor + "F");
+        controller.SetScoreText(currentFloor.ToString());
     }
 
 
