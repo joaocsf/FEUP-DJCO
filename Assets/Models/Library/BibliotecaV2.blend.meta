@@ -40,6 +40,7 @@ ModelImporter:
     100064: Lobby_004
     100066: Tree
     100068: TreeDup
+    100070: Change
     400000: BackWall
     400002: BackWall_001
     400004: BackWall_002
@@ -75,11 +76,13 @@ ModelImporter:
     400064: Lobby_004
     400066: Tree
     400068: TreeDup
+    400070: Change
     2100000: None__pallete_png
     2100002: Material_001__pallete_png
     2100004: unnamed
     2100006: None__pallete_png_001
     2100008: Material_001__pallete_png_001
+    2100010: Material_001
     2300000: BackWall
     2300002: BackWall_001
     2300004: BackWall_002
@@ -114,6 +117,7 @@ ModelImporter:
     2300062: Lobby_004
     2300064: Tree
     2300066: TreeDup
+    2300068: Change
     3300000: BackWall
     3300002: BackWall_001
     3300004: BackWall_002
@@ -148,6 +152,7 @@ ModelImporter:
     3300062: Lobby_004
     3300064: Tree
     3300066: TreeDup
+    3300068: Change
     4300000: Base_004
     4300002: Grass_001
     4300004: BackWall_004
@@ -182,6 +187,7 @@ ModelImporter:
     4300062: Lobby_004
     4300064: TreeDup
     4300066: Tree
+    4300068: Change
     7400000: Default Take
     9500000: //RootNode
   externalObjects: {}

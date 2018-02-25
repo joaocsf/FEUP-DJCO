@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class GameController : MonoBehaviour {
+
+
     public enum GameState
     {
         Selection,
@@ -38,17 +40,50 @@ public class GameController : MonoBehaviour {
         private set { }
     }
     public static int highestFloor = 0;
-    public static GameState gameState;
+    private static GameState gameState;
+    private static GameObject selectionBehaviours;
+    private static GameObject playerUI;
+    private static MusicPlayer musicPlayer;
+    
+
+    public static GameState State
+    {
+        get { return gameState; }
+        set { UpdateState(value); }
+    }
 
     private static Generator generator;
     private static CameraPosition cameraPosition;
 
-    // Use this for initialization
+    public static void UpdateState(GameState state)
+    {
+        gameState = state;
+        selectionBehaviours.SetActive(false);
+
+        musicPlayer.UpdateMusic(state);
+        switch (state)
+        {
+            case GameState.Selection:
+                selectionBehaviours.SetActive(true);
+                break;
+            case GameState.Playing:
+                break;
+            case GameState.Win:
+                break;
+            case GameState.Credits:
+                break;
+        }
+
+
+    }
+
     void Start () {
         gameState = GameState.Selection;
-
+        selectionBehaviours = GameObject.FindObjectOfType<Selector>().transform.parent.gameObject;
         generator = GameObject.FindObjectOfType<Generator>();
         cameraPosition = GameObject.FindObjectOfType<CameraPosition>();
+        musicPlayer = GameObject.FindObjectOfType<MusicPlayer>();
+        State = GameState.Selection;
     }
 	
 	public void ReportNewFloor(int newFloor)

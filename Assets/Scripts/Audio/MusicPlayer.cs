@@ -12,10 +12,24 @@ public class MusicPlayer : MonoBehaviour {
     public float bpm = 128;
     public int transition = 1;
 
-    
-    void Start()
+
+    public void UpdateMusic(GameController.GameState state)
     {
- 
+        switch (state)
+        {
+            case GameController.GameState.Credits:
+                credits.TransitionTo(transition);
+                break;
+            case GameController.GameState.Playing:
+                rush.TransitionTo(transition);
+                break;
+            case GameController.GameState.Selection:
+                selection.TransitionTo(transition);
+                break;
+            case GameController.GameState.Win:
+                win.TransitionTo(transition);
+                break;
+        }
     }
 
     void Update()

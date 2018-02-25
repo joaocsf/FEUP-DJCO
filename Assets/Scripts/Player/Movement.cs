@@ -20,6 +20,7 @@ public class Movement : MonoBehaviour {
     public LayerMask lmask;
     CapsuleCollider collider;
     private Rigidbody rb;
+
     bool jump = false;
 
     public bool canControl = false;

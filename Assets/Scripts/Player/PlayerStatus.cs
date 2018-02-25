@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -8,6 +9,8 @@ public class PlayerStatus : MonoBehaviour {
     private int playerId = 1;
     private int currentFloor = 0;
     private PlayerUIController controller;
+
+
     public Text timerText;
     private float secondsCount;
     private int minuteCount;
@@ -29,6 +32,17 @@ public class PlayerStatus : MonoBehaviour {
         //UpdateTimerUI();
     }
 
+    public void UIEnabled(bool v)
+    {
+        if(controller != null)
+            controller.gameObject.SetActive(v);
+    }
+
+    public void SetHeadSprite(Sprite s)
+    {
+        if (controller != null)
+            controller.SetHeadSprite(s);
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -49,7 +63,7 @@ public class PlayerStatus : MonoBehaviour {
 
     private void UpdateText()
     {
-        controller.SetScoreText(currentFloor.ToString());
+        controller.SetScoreText(currentFloor >= 0? currentFloor.ToString() : "");
     }
 
 
