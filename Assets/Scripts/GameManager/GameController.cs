@@ -13,6 +13,8 @@ public class GameController : MonoBehaviour {
         Credits
     }
 
+    public GameState state, oldState;
+
     public static float floorHeight
     {
         get
@@ -83,10 +85,20 @@ public class GameController : MonoBehaviour {
         generator = GameObject.FindObjectOfType<Generator>();
         cameraPosition = GameObject.FindObjectOfType<CameraPosition>();
         musicPlayer = GameObject.FindObjectOfType<MusicPlayer>();
-        State = GameState.Selection;
+        oldState = state;
+        State = state;
     }
-	
-	public void ReportNewFloor(int newFloor)
+
+    void Update()
+    {
+        if(oldState != state)
+        {
+            oldState = state;
+            State = state;
+        }
+    }
+
+    public void ReportNewFloor(int newFloor)
     {
         if(highestFloor < newFloor)
         {

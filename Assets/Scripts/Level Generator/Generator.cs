@@ -32,6 +32,7 @@ public class Generator : MonoBehaviour {
     public GameObject normalFloor;
     public GameObject brokenFloor;
     public GameObject stairsFloor;
+    public GameObject powerUp;
 
     [Header("Background Objects")]
     public GameObject background;
@@ -177,6 +178,10 @@ public class Generator : MonoBehaviour {
                     prefab = stairsFloor;
                     break;
                 default:
+                    if (tiles[i] == TileType.PowerUp)
+                    {
+                        SpawnObject(powerUp, parent, i);
+                    }
                     prefab = normalFloor;
                     break;
 

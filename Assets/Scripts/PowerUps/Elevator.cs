@@ -2,11 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[CreateAssetMenu(fileName = "Elevator", menuName = "PowerUps/Elevator", order = 1)]
 public class Elevator : PowerUp {
-    public Elevator(GameObject player) : base(player)
-    {
-        immediateUpdate = false;
-    }
 
     public override void Activate()
     {
@@ -15,7 +12,7 @@ public class Elevator : PowerUp {
 
         player.transform.localPosition = test;
 
-        this.isOver = true;
+        Destroy(this);
     }
 
     public override void Update()

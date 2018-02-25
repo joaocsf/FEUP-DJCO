@@ -2,16 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class PowerUp
+public abstract class PowerUp : ScriptableObject
 {
     [HideInInspector] public bool immediateUpdate;
-    [HideInInspector] public bool isOver;
     protected GameObject player;
+    public Sprite sprite;
 
-    public PowerUp(GameObject player)
+    public void setPlayer(GameObject player)
     {
         this.player = player;
-        this.isOver = false;
     }
 
     public abstract void Activate();

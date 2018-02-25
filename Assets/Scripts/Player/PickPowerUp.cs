@@ -5,6 +5,12 @@ using UnityEngine;
 public class PickPowerUp : MonoBehaviour {
 
     public PowerUp powerUp;
+    private PowerUpGenerator generator;
+
+    private void Start()
+    {
+        generator = GameObject.FindObjectOfType<PowerUpGenerator>();
+    }
 
     void OnTriggerEnter(Collider other)
     {
@@ -12,8 +18,6 @@ public class PickPowerUp : MonoBehaviour {
         {
             Debug.Log("Picked it up");
             Destroy(other.gameObject);
-
-            PowerUpGenerator generator = new PowerUpGenerator();
 
             powerUp = generator.GetPowerUp(gameObject);
         }
@@ -23,16 +27,11 @@ public class PickPowerUp : MonoBehaviour {
     {
         //Update power up
         if(powerUp != null) {
-            if (Input.GetButtonDown("Fire1" + gameObject.GetComponent<Movement>().playerID))
+            if (Input.GetButtonDown("Fire" + gameObject.GetComponent<Movement>().playerID))
             {
                 powerUp.Activate();
             }
             powerUp.Update();
-
-            if (powerUp.isOver)
-            {
-                powerUp = null;
-            }
         }
     }
 }
