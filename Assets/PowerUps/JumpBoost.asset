@@ -11,8 +11,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fb76be5291db7f4e8b7a3ed7fae6790, type: 3}
   m_Name: JumpBoost
   m_EditorClassIdentifier: 
-  immediateActivate: 0
+  immediateActivate: 1
   sprite: {fileID: 0}
   speed: 1.5
   jumpSpeed: 7.5
-  effectTime: 30
+  effectTime: 10

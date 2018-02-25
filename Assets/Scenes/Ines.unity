@@ -2136,7 +2136,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   powerups:
   - {fileID: 11400000, guid: b00d43b270d37344e80c4af5e71fa56f, type: 2}
-  - {fileID: 0}
+  - {fileID: 11400000, guid: cf51f7ed0f490b14c9e298a16b249651, type: 2}
+  - {fileID: 11400000, guid: 7d59dd86071516e46b1ee9e45bcd7526, type: 2}
 --- !u!1 &1019166347
 GameObject:
   m_ObjectHideFlags: 0
