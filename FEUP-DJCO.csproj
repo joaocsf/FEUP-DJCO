@@ -298,6 +298,7 @@
     <Compile Include="Assets\Scripts\Player\PlayerStyle.cs" />
     <Compile Include="Assets\Scripts\Player\Selector.cs" />
     <Compile Include="Assets\Scripts\PowerUps\Elevator.cs" />
+    <Compile Include="Assets\Scripts\PowerUps\MovementBoost.cs" />
     <Compile Include="Assets\Scripts\PowerUps\PowerUp.cs" />
     <Compile Include="Assets\Scripts\PowerUps\PowerUpGenerator.cs" />
     <Compile Include="Assets\Scripts\UI\PlayerUIController.cs" />

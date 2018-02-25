@@ -31,7 +31,7 @@ public class PickPowerUp : MonoBehaviour {
             {
                 powerUp.Activate();
             }
-            powerUp.Update();
+            powerUp.OnUpdate(Time.deltaTime);
         }
     }
 }

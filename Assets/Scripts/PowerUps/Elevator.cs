@@ -5,7 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Elevator", menuName = "PowerUps/Elevator", order = 1)]
 public class Elevator : PowerUp {
 
-    public override void Activate()
+    protected override void OnActivate()
     {
         Vector3 test = player.transform.localPosition;
         test.y += (float)4.5;
@@ -15,6 +15,6 @@ public class Elevator : PowerUp {
         Destroy(this);
     }
 
-    public override void Update()
+    public override void OnUpdate(float deltaTime)
     {}
 }

@@ -9,19 +9,16 @@ public class PowerUpGenerator : MonoBehaviour{
     {
         Debug.Log("Picked up Manager");
         //Check what is players position in game and generates powerup accordingly
-        PowerUp original = powerups[0/*Random*/];
+        PowerUp original = powerups[Random.Range(0, powerups.Length)];
 
         PowerUp p = Object.Instantiate(original) as PowerUp;
-        p.setPlayer(player);
+        p.Initialize(player);
 
-        if (p.immediateUpdate)
+        if (p.immediateActivate)
         {
             p.Activate();
-            return null;
         }
-        else
-        {
-            return p;
-        }
+
+        return p;
     }
 }
