@@ -21,6 +21,7 @@ public class Generator : MonoBehaviour {
     public int brokenChance = 20;
     public int stairsMinimum = 1;
     public int stairsMaximum = 2;
+    public int blockRadius = 1;
 
     [Header("Walls Objects")]
     public GameObject wall;
@@ -171,17 +172,20 @@ public class Generator : MonoBehaviour {
             switch (tiles[i])
             {
                 case TileType.Broken:
+                    prefab = brokenFloor;
+                    break;
                 case TileType.BrokenPowerUp:
+                    SpawnObject(powerUp, parent, i);
                     prefab = brokenFloor;
                     break;
                 case TileType.Stairs:
                     prefab = stairsFloor;
                     break;
+                case TileType.PowerUp:
+                    SpawnObject(powerUp, parent, i);
+                    prefab = normalFloor;
+                    break;
                 default:
-                    if (tiles[i] == TileType.PowerUp)
-                    {
-                        SpawnObject(powerUp, parent, i);
-                    }
                     prefab = normalFloor;
                     break;
 
@@ -267,7 +271,10 @@ public class Generator : MonoBehaviour {
         //Unblock the tiles
         for (int i = 0; i < tilesNumber; i++)
         {
-            tilesBlocked[i] = Mathf.Max(tilesBlocked[i] - 1, 0);
+            if (tilesBlocked[i] > 0)
+                tilesBlocked[i]--;
+            else if (tilesBlocked[i] < 0)
+                tilesBlocked[i]++;
         }
 
         if (debug)
@@ -285,18 +292,48 @@ public class Generator : MonoBehaviour {
     }
 
     /**
+     * Returns the number of free tiles
+     **/
+    private int GetFreeTiles()
+    {
+        int res = 0;
+        for (int i = 0; i < tilesBlocked.Length; i++)
+        {
+            if (tilesBlocked[i] == 0)
+                res++;
+        }
+        return res;
+    }
+   
+
+    /**
+    * Blocks Tiles
+    * Made for Stairs 
+    **/
+    private void BlockTiles(int tile, int height, int radius)
+    {
+        for (int i = (tile - radius); i <= (tile + radius); i++)
+        {
+            if(i >= 0 && i < tilesBlocked.Length)
+                tilesBlocked[i] = -height;
+        }
+        tilesBlocked[tile] = height;
+    }
+
+    /**
      * Generates the stairs
      **/
     private void GenerateStairs(TileType[] tiles)
     {
         int stairsNumber = Random.Range(stairsMinimum, stairsMaximum+1);
-        while(stairsNumber > 0)
-        {
+        while(stairsNumber > 0) {
+       
+            stairsNumber = Mathf.Min(stairsNumber, GetFreeTiles());
             int tile = Random.Range(0, tilesNumber);
             if (tilesBlocked[tile] == 0 && tiles[tile] == TileType.Default)
             {
                 tiles[tile] = TileType.Stairs;
-                tilesBlocked[tile] = 2;
+                BlockTiles(tile, 2, blockRadius);
                 stairsNumber--;
             }
         }
@@ -326,7 +363,7 @@ public class Generator : MonoBehaviour {
     {
         for (int tile = 0; tile < tilesNumber; tile++)
         {
-            if (tilesBlocked[tile] == 0 && Random.Range(0, 100) < brokenChance)
+            if (tilesBlocked[tile] <= 0 && Random.Range(0, 100) < brokenChance)
             {
                 tiles[tile] = TileType.Broken;
             }
@@ -340,7 +377,7 @@ public class Generator : MonoBehaviour {
     {
         for (int tile = 0; tile < tilesNumber; tile++)
         {
-            if (tilesBlocked[tile] == 0 && Random.Range(0, 100) < powerUpChance)
+            if (tilesBlocked[tile] <= 0 && Random.Range(0, 100) < powerUpChance)
             {
                 if (tiles[tile] == TileType.Broken)
                     tiles[tile] = TileType.BrokenPowerUp;
