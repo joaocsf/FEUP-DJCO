@@ -9,6 +9,8 @@ public class PlayerStatus : MonoBehaviour {
     private int currentFloor = 0;
     private PlayerUIController controller;
     private GameController gameController;
+    
+
 
 	// Use this for initialization
 	IEnumerator Start () {
@@ -46,6 +48,10 @@ public class PlayerStatus : MonoBehaviour {
 
     private void UpdateText()
     {
-        controller.SetScoreText(currentFloor >= 0? currentFloor.ToString() : "");
+        if(currentFloor + 3 < GameController.cameraFloor)
+            controller.SetScoreText("END GAME");
+      else
+            controller.SetScoreText(currentFloor >= 0? currentFloor.ToString() : "");
+
     }
 }

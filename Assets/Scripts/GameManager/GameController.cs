@@ -23,6 +23,15 @@ public class GameController : MonoBehaviour {
         }
         private set { }
     }
+    public static int cameraFloor
+    {
+        get
+        {
+            return floor;
+        }
+        private set { }
+    }
+
 
     public static float floorWidth
     {
@@ -46,7 +55,9 @@ public class GameController : MonoBehaviour {
     private static GameObject selectionBehaviours;
     private static GameObject playerUI;
     private static MusicPlayer musicPlayer;
-    
+    private static int floor;
+ 
+
 
     public static GameState State
     {
@@ -102,7 +113,9 @@ public class GameController : MonoBehaviour {
     {
         if(highestFloor < newFloor)
         {
+            
             highestFloor = newFloor;
+            floor = newFloor;
             generator.SetHighestFloor(highestFloor);
             cameraPosition.SetHighestFloor(highestFloor);
             Debug.Log(highestFloor);
