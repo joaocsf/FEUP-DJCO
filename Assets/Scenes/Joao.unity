@@ -248,7 +248,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: -0.36, y: 0.9, z: 0.68}
-  m_Center: {x: 0, y: 0.31, z: 0.26}
+  m_Center: {x: 0, y: 0.47, z: -0.13}
 --- !u!23 &129727498
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -3222,6 +3222,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9866a0dad9dd2dd4f9a2ebe8fe883b3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  state: 0
+  oldState: 0
 --- !u!1 &1515997239
 GameObject:
   m_ObjectHideFlags: 0
@@ -3425,7 +3427,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: -0.36, y: 0.9, z: 0.68}
-  m_Center: {x: 0, y: 0.31, z: 0.26}
+  m_Center: {x: 0, y: 0.47, z: -0.13}
 --- !u!23 &1563931358
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -3908,6 +3910,7 @@ MonoBehaviour:
   brokenChance: 54
   stairsMinimum: 1
   stairsMaximum: 2
+  blockRadius: 1
   wall: {fileID: 1350297343720632, guid: 70951d7b00c091f4ba9996719cf7dca5, type: 2}
   backWall: {fileID: 1553628894107080, guid: c1d41e1c0a8ff044cbda0412259a537a, type: 2}
   backSolidWall: {fileID: 1230796600836200, guid: 185cacdb272be35489e617b780298487,
@@ -3920,6 +3923,7 @@ MonoBehaviour:
     type: 2}
   stairsFloor: {fileID: 1750872629654394, guid: 41c5ee0173e03a14ca6a8f015a98c03b,
     type: 2}
+  powerUp: {fileID: 1483074873387136, guid: 06aac42026ea5444d90dd284c08fd0ea, type: 2}
   background: {fileID: 1530145589837700, guid: c0eba502028a2d9408610af55aea99ae, type: 2}
   elevator: {fileID: 1653572141523534, guid: b87e925e329651145a1dc66263e8e787, type: 2}
   backgroundDecoration:
