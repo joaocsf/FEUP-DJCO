@@ -50,12 +50,20 @@ public class GameController : MonoBehaviour {
         }
         private set { }
     }
+
+    public static  bool EndGame
+    {
+        get {return endGame; }
+        set { UpdateEndGame(value); }
+    }
+
     public static int highestFloor = 0;
     private static GameState gameState;
     private static GameObject selectionBehaviours;
     private static GameObject playerUI;
     private static MusicPlayer musicPlayer;
     private static int floor;
+    private static bool endGame = false;
  
 
 
@@ -88,6 +96,10 @@ public class GameController : MonoBehaviour {
         }
 
 
+    }
+    public static void UpdateEndGame(bool value)
+    {
+        endGame = value;
     }
 
     void Start () {

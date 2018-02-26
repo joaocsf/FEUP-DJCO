@@ -48,10 +48,13 @@ public class PlayerStatus : MonoBehaviour {
 
     private void UpdateText()
     {
-        if(currentFloor + 3 < GameController.cameraFloor)
+        if (currentFloor + 3 < GameController.cameraFloor)
+        {
             controller.SetScoreText("END GAME");
-      else
-            controller.SetScoreText(currentFloor >= 0? currentFloor.ToString() : "");
+            GameController.EndGame = true;
+        }
+        else
+            controller.SetScoreText(currentFloor >= 0 ? currentFloor.ToString() : "");
 
     }
 }

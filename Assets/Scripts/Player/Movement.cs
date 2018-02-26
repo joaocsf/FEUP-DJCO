@@ -149,6 +149,9 @@ public class Movement : MonoBehaviour {
         if (!canControl)
             return;
 
+        if (GameController.EndGame)
+            return;
+
         Vector3 velocity = rb.velocity;
         float hInput = Input.GetAxisRaw("Horizontal" + playerID);
         
