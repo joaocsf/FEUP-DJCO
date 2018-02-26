@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 [CreateAssetMenu(fileName = "MovementBoost", menuName = "PowerUps/MovementBoost", order = 1)]
 public class MovementBoost : PowerUp
