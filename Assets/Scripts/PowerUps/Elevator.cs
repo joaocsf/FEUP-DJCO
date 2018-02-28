@@ -7,12 +7,21 @@ public class Elevator : PowerUp {
 
     protected override void OnActivate()
     {
-        Vector3 test = player.transform.localPosition;
-        test.y += (float)4.5;
 
-        player.transform.localPosition = test;
+        RaycastHit hit;
 
-        Destroy(this);
+        if (Physics.Raycast(player.transform.position, Vector3.forward, out hit))
+        {
+            if(hit.collider.tag == "Elevator")
+            {
+                Vector3 test = player.transform.localPosition;
+                test.y += (float)4.5;
+
+                player.transform.localPosition = test;
+
+                Destroy(this);
+            }
+        }
     }
 
     public override void OnUpdate(float deltaTime)
