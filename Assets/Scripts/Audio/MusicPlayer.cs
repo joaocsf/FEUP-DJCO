@@ -21,7 +21,7 @@ public class MusicPlayer : MonoBehaviour {
                 credits.TransitionTo(transition);
                 break;
             case GameController.GameState.Playing:
-                rush.TransitionTo(transition);
+                racing.TransitionTo(transition);
                 break;
             case GameController.GameState.Selection:
                 selection.TransitionTo(transition);

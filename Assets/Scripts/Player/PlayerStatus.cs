@@ -3,21 +3,38 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Movement), typeof(PlayerStyle))]
 public class PlayerStatus : MonoBehaviour {
 
-    private int playerId = 1;
+    public int playerID = 1;
     private int currentFloor = 0;
     private PlayerUIController controller;
     private GameController gameController;
+    public PlayerInput Input { get; private set; }
+    private Movement movement;
+    private PlayerStyle style;
+    private bool active = false;
+
     
+    private List<IPlayerEvents> listeners = new List<IPlayerEvents>();
 
-
+    public void AddPlayerEventListener(IPlayerEvents listener)
+    {
+        listeners.Add(listener);
+    }
 	// Use this for initialization
 	IEnumerator Start () {
 
+        movement = GetComponent<Movement>();
+        style = GetComponent<PlayerStyle>();
         gameController = GameObject.FindObjectOfType<GameController>();
+        Input = InputManager.GetInput(playerID);
+
         yield return new WaitForFixedUpdate();
+
+        Active(active);
         controller = UIManager.instance.createPlayerUI();
+        style.UpdateSortingLayer(transform, playerID);
     }
 
     public void UIEnabled(bool v)
@@ -34,7 +51,9 @@ public class PlayerStatus : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        //Check Floor
+
+        movement.InputUpdate(Input);
+
         int newFloor = Mathf.FloorToInt(transform.position.y / GameController.floorHeight);
         if (currentFloor != newFloor)
         {
@@ -45,6 +64,12 @@ public class PlayerStatus : MonoBehaviour {
         }
     }
 
+    private void FixedUpdate()
+    {
+        if (active)
+            Debug.Log(Input.Horizontal());
+        movement.MovementUpdate(Input);
+    }
 
     private void UpdateText()
     {
@@ -57,4 +82,50 @@ public class PlayerStatus : MonoBehaviour {
             controller.SetScoreText(currentFloor >= 0 ? currentFloor.ToString() : "");
 
     }
+
+    public void SetReady(bool state)
+    {
+         
+    }
+
+    private void CallListeners(Action<IPlayerEvents> action)
+    {
+        listeners.ForEach(action);
+    }
+
+    public void Active(bool state)
+    {
+        active = state;
+
+        if(state == true)
+        {
+            CallListeners((listener) => listener.OnActivated());
+        }else
+            CallListeners((listener) => listener.OnDeActivated());
+
+        foreach(Transform t in transform)
+        {
+            if(t.GetComponent<ParticleSystem>() == null)
+                t.gameObject.SetActive(active);
+        }
+
+        movement.Activate(state);
+    }
+    public void OnTriggerEnter(Collider other)
+    {
+        if(other.tag == "Ready")
+        {
+
+        }
+    }
+
+    public void OnTriggerExit(Collider other)
+    {
+        if(other.tag == "Ready")
+        {
+
+        }
+        
+    }
+
 }

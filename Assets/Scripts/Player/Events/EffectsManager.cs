@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Movement))]
+[RequireComponent(typeof(PlayerStatus))]
 public class EffectsManager : MonoBehaviour, IPlayerEvents {
 
     public ParticleSystem born;
@@ -11,15 +11,15 @@ public class EffectsManager : MonoBehaviour, IPlayerEvents {
 
     private void Start()
     {
-        GetComponent<Movement>().AddPlayerEventListener(this);
+        GetComponent<PlayerStatus>().AddPlayerEventListener(this);
     }
 
-    public void OnControllDisabled()
+    public void OnDeActivated()
     {
         dead.Play();
     }
 
-    public void OnControllEnabled()
+    public void OnActivated()
     {
         born.Play();
     }

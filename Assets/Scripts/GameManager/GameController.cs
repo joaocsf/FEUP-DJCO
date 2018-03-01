@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour {
 
-
     public enum GameState
     {
         Selection,
@@ -65,8 +64,6 @@ public class GameController : MonoBehaviour {
     private static int floor;
     private static bool endGame = false;
  
-
-
     public static GameState State
     {
         get { return gameState; }
@@ -76,7 +73,7 @@ public class GameController : MonoBehaviour {
     private static Generator generator;
     private static CameraPosition cameraPosition;
 
-    public static void UpdateState(GameState state)
+    private static void UpdateState(GameState state)
     {
         gameState = state;
         selectionBehaviours.SetActive(false);
@@ -94,8 +91,6 @@ public class GameController : MonoBehaviour {
             case GameState.Credits:
                 break;
         }
-
-
     }
     public static void UpdateEndGame(bool value)
     {

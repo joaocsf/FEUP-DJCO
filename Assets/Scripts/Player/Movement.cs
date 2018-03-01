@@ -7,7 +7,6 @@ using UnityEngine;
 public class Movement : MonoBehaviour {
 
     public bool debug = false;
-    public int playerID = 1;
 
     public float defaultSpeed = 5;
     public float defaultJumpSpeed = 5;
@@ -17,15 +16,13 @@ public class Movement : MonoBehaviour {
     public float acceleration = 0.1f;
     public float jumpReaction = 0.5f;
 
-    public PlayerInput playerInput;
-
     public LayerMask lmask;
     CapsuleCollider collider;
     private Rigidbody rb;
 
     bool jump = false;
 
-    public bool canControl = false;
+    private bool active = false;
 
     private Animator anim;
 
@@ -35,7 +32,6 @@ public class Movement : MonoBehaviour {
 
     private float scaleX = 1;
 
-    public List<IPlayerEvents> listeners = new List<IPlayerEvents>();
     private void OnDrawGizmos()
     {
 
@@ -52,7 +48,6 @@ public class Movement : MonoBehaviour {
     void Start()
     {
 
-        playerInput = InputManager.GetInput(playerID);
 
         if (anim == null)
             anim = GetComponent<Animator>();
@@ -63,35 +58,15 @@ public class Movement : MonoBehaviour {
         jumpSpeed = defaultJumpSpeed;
         rb.constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionZ;
 
-        UpdateSortingLayer(transform, playerID);
-        CanControll(canControl);
     }
 
-    private void UpdateSortingLayer(Transform transform, int id)
-    {
-        SpriteRenderer renderer = transform.GetComponent<SpriteRenderer>();
-        if (renderer != null)
-        {
-            renderer.sortingOrder = id;
-        }
-
-        foreach (Transform t in transform)
-            UpdateSortingLayer(t, id);
-    }
-
-    private void Update()
+    public void InputUpdate(PlayerInput playerInput)
     {
         if(playerInput.Jump())
         {
             jumpInput = jumpReaction;
         }
     }
-
-    public void AddPlayerEventListener(IPlayerEvents listener)
-    {
-        listeners.Add(listener);
-    }
-
 
     private bool CheckCollision(Vector3 direction)
     {
@@ -113,23 +88,10 @@ public class Movement : MonoBehaviour {
         }
     }
 
-    public void CanControll(bool state)
+    public void Activate(bool activated)
     {
-        canControl = state;
-
-        if(state == true)
-        {
-            listeners.ForEach((listener) => listener.OnControllEnabled());
-        }else
-            listeners.ForEach((listener) => listener.OnControllDisabled());
-
-        foreach(Transform t in transform)
-        {
-            if(t.GetComponent<ParticleSystem>() == null)
-                t.gameObject.SetActive(canControl);
-        }
-
-        rb.isKinematic = !canControl;
+        active = activated;
+        rb.isKinematic = !activated;
     }
 
     public void ResetJumpSpeed()
@@ -142,9 +104,9 @@ public class Movement : MonoBehaviour {
         speed = defaultSpeed;
     }
 
-    private void FixedUpdate()
+    public void MovementUpdate(PlayerInput playerInput)
     {
-        if (!canControl)
+        if (!active)
             return;
 
         if (GameController.EndGame)

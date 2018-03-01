@@ -86,8 +86,6 @@ public class Generator : MonoBehaviour {
         alphaKeys[1].time = 1.0F;*/
         gradient.SetKeys(colorKeys, alphaKeys);
 
-        Debug.Log(gradient);
-
         //Initiate Floors
         tilesBlocked = new int[tilesNumber];
         for(int i = 0; i < initialFloors; i++)

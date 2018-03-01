@@ -4,6 +4,6 @@ using UnityEngine;
 
 public interface IPlayerEvents{
 
-    void OnControllEnabled();
-    void OnControllDisabled();
+    void OnActivated();
+    void OnDeActivated();
 }

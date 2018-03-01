@@ -26,4 +26,16 @@ public class PlayerStyle : MonoBehaviour {
         status.SetHeadSprite(s);
     }
 
+    public void UpdateSortingLayer(Transform transform, int id)
+    {
+        SpriteRenderer renderer = transform.GetComponent<SpriteRenderer>();
+        if (renderer != null)
+        {
+            renderer.sortingOrder = id;
+        }
+
+        foreach (Transform t in transform)
+            UpdateSortingLayer(t, id);
+    }
+
 }

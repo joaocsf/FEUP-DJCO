@@ -4,23 +4,21 @@ using UnityEngine;
 
 public class Selector : MonoBehaviour {
 
-    public Movement movement;
+    public PlayerStatus playerStatus;
     public bool enabled = false;
 
 	void Update () {
         
-        if(movement.playerInput.Jump() && !enabled)
+        if(playerStatus.Input.Jump() && !enabled)
         {
             enabled = true;
-            Debug.Log("HERE" + movement.playerID);
-            movement.gameObject.transform.position = transform.position;
-            movement.CanControll(true);
+            playerStatus.gameObject.transform.position = transform.position;
+            playerStatus.Active(true);
         }
-        if(movement.playerInput.Fire() && enabled)
+        if(playerStatus.Input.Fire() && enabled)
         {
             enabled = false;
-            Debug.Log("THERE" + movement.playerID);
-            movement.CanControll(false);
+            playerStatus.Active(false);
         }
         
 	}
