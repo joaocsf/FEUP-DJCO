@@ -7,7 +7,7 @@ using UnityEngine;
 public class Movement : MonoBehaviour {
 
     public bool debug = false;
-    public string playerID = "";
+    public int playerID = 1;
 
     public float defaultSpeed = 5;
     public float defaultJumpSpeed = 5;
@@ -16,6 +16,8 @@ public class Movement : MonoBehaviour {
     public float speed = 1;
     public float acceleration = 0.1f;
     public float jumpReaction = 0.5f;
+
+    public PlayerInput playerInput;
 
     public LayerMask lmask;
     CapsuleCollider collider;
@@ -50,6 +52,7 @@ public class Movement : MonoBehaviour {
     void Start()
     {
 
+        playerInput = InputManager.GetInput(playerID);
 
         if (anim == null)
             anim = GetComponent<Animator>();
@@ -60,21 +63,16 @@ public class Movement : MonoBehaviour {
         jumpSpeed = defaultJumpSpeed;
         rb.constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionZ;
 
-        int id;
-        int.TryParse(playerID, out id);
-
-        UpdateSortingLayer(transform, id);
+        UpdateSortingLayer(transform, playerID);
         CanControll(canControl);
     }
 
     private void UpdateSortingLayer(Transform transform, int id)
     {
-        Debug.Log(id + " " + transform.name);
         SpriteRenderer renderer = transform.GetComponent<SpriteRenderer>();
         if (renderer != null)
         {
             renderer.sortingOrder = id;
-            Debug.Log("FOUND");
         }
 
         foreach (Transform t in transform)
@@ -83,7 +81,7 @@ public class Movement : MonoBehaviour {
 
     private void Update()
     {
-        if(Input.GetButtonDown("Jump" + playerID))
+        if(playerInput.Jump())
         {
             jumpInput = jumpReaction;
         }
@@ -153,7 +151,7 @@ public class Movement : MonoBehaviour {
             return;
 
         Vector3 velocity = rb.velocity;
-        float hInput = Input.GetAxisRaw("Horizontal" + playerID);
+        float hInput = playerInput.Horizontal();
         
         if(jumpInput > 0f)
             jumpInput -= Time.fixedDeltaTime;
@@ -186,8 +184,6 @@ public class Movement : MonoBehaviour {
             velocity.x = 0;
 
         rb.velocity = velocity;
-
-        Debug.Log(rb.velocity.x);
 
         anim.SetFloat("XVelo", Mathf.Abs(rb.velocity.x));
         anim.SetFloat("YVelo", jump? 0 : rb.velocity.y);

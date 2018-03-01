@@ -2,13 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Movement))]
 public class PickPowerUp : MonoBehaviour {
 
     public PowerUp powerUp;
     private PowerUpGenerator generator;
+    private Movement movement;
 
     private void Start()
     {
+        movement = GetComponent<Movement>();
         generator = GameObject.FindObjectOfType<PowerUpGenerator>();
     }
 
@@ -27,7 +30,7 @@ public class PickPowerUp : MonoBehaviour {
     {
         //Update power up
         if(powerUp != null) {
-            if (Input.GetButtonDown("Fire" + gameObject.GetComponent<Movement>().playerID))
+            if (movement.playerInput.Fire())
             {
                 powerUp.Activate();
             }

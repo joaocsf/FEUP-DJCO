@@ -9,14 +9,14 @@ public class Selector : MonoBehaviour {
 
 	void Update () {
         
-        if(Input.GetButtonDown("Jump" + movement.playerID) && !enabled)
+        if(movement.playerInput.Jump() && !enabled)
         {
             enabled = true;
             Debug.Log("HERE" + movement.playerID);
             movement.gameObject.transform.position = transform.position;
             movement.CanControll(true);
         }
-        if(Input.GetButtonDown("Fire" + movement.playerID) && enabled)
+        if(movement.playerInput.Fire() && enabled)
         {
             enabled = false;
             Debug.Log("THERE" + movement.playerID);
