@@ -19,7 +19,7 @@ public class MovementBoost : PowerUp
     public override void OnUpdate(float deltaTime)
     {
         elapsedTime += deltaTime;
-        Debug.Log("Got here " + elapsedTime);
+        //Debug.Log("Got here " + elapsedTime);
         if (elapsedTime >= effectTime)
         {
             Movement m = player.GetComponent<Movement>();

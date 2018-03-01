@@ -7,7 +7,6 @@ public class PowerUpGenerator : MonoBehaviour{
 
     public PowerUp GetPowerUp(GameObject player)
     {
-        Debug.Log("Picked up Manager");
         //Check what is players position in game and generates powerup accordingly
         PowerUp original = powerups[Random.Range(0, powerups.Length)];
 

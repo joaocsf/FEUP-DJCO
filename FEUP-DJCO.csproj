@@ -284,6 +284,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Animation.cs" />
     <Compile Include="Assets\Scripts\Affectors\HeadSwapper.cs" />
     <Compile Include="Assets\Scripts\Audio\EffectsPlayer.cs" />
     <Compile Include="Assets\Scripts\Audio\MusicPlayer.cs" />

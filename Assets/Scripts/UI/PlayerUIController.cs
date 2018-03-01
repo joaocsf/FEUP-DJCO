@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class PlayerUIController : MonoBehaviour {
 
     public Text _text;
-    public Image headSlot;
+    public Image headSlot, powerUpSlot, feet;
 	void Start () {
 		
 	}
@@ -19,6 +19,5 @@ public class PlayerUIController : MonoBehaviour {
     public void SetHeadSprite(Sprite s)
     {
         headSlot.sprite = s;
-        
     }
 }

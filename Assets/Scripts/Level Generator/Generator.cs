@@ -18,7 +18,8 @@ public class Generator : MonoBehaviour {
     [Range(0, 100)]
     public int elevatorChance = 50;
     [Range(0, 100)]
-    public int brokenChance = 20;
+    public int brokenChance = 0;
+    public int brokenChanceGrowth = 1;
     public int stairsMinimum = 1;
     public int stairsMaximum = 2;
     public int blockRadius = 1;
@@ -359,9 +360,10 @@ public class Generator : MonoBehaviour {
      **/
     private void GenerateBrokenFloor(TileType[] tiles)
     {
+        float change = brokenChance + brokenChanceGrowth * currentFloor;
         for (int tile = 0; tile < tilesNumber; tile++)
         {
-            if (tilesBlocked[tile] <= 0 && Random.Range(0, 100) < brokenChance)
+            if (tilesBlocked[tile] <= 0 && Random.Range(0, 100) < change)
             {
                 tiles[tile] = TileType.Broken;
             }
