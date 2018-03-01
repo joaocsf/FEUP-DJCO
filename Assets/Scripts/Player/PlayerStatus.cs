@@ -48,9 +48,9 @@ public class PlayerStatus : MonoBehaviour {
         if (controller != null)
             controller.SetHeadSprite(s);
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+    // Update is called once per frame
+    void Update () {
 
         movement.InputUpdate(Input);
 
@@ -67,7 +67,7 @@ public class PlayerStatus : MonoBehaviour {
     private void FixedUpdate()
     {
         if (active)
-            Debug.Log(Input.Horizontal());
+            //Debug.Log(Input.Horizontal());
         movement.MovementUpdate(Input);
     }
 

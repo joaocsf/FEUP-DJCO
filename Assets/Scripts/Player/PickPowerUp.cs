@@ -2,16 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(PlayerStatus))]
+[RequireComponent(typeof(PlayerStatus),typeof(PlayerStyle))]
 public class PickPowerUp : MonoBehaviour {
 
     public PowerUp powerUp;
     private PowerUpGenerator generator;
     private PlayerStatus status;
+    private PlayerStyle style;
 
     private void Start()
     {
         status = GetComponent<PlayerStatus>();
+        style = GetComponent<PlayerStyle>();
         generator = GameObject.FindObjectOfType<PowerUpGenerator>();
     }
 
@@ -23,6 +25,8 @@ public class PickPowerUp : MonoBehaviour {
             Destroy(other.gameObject);
 
             powerUp = generator.GetPowerUp(gameObject);
+
+            style.SetPowerUpSprite(powerUp.sprite);
         }
     }
 

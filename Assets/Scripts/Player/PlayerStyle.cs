@@ -10,8 +10,10 @@ public class PlayerStyle : MonoBehaviour {
     private PlayerStatus status;
     public SpriteRenderer body;
     public SpriteRenderer head;
+    public SpriteRenderer powerUp;
+    public SpriteRenderer rightFoot, leftFoot;
 
-	void Start () {
+    void Start () {
         status = GetComponent<PlayerStatus>();
         body.color = mainColor;
 	}
@@ -24,6 +26,17 @@ public class PlayerStyle : MonoBehaviour {
     {
         head.sprite = s;
         status.SetHeadSprite(s);
+    }
+
+    public void SetPowerUpSprite(Sprite s)
+    {
+        powerUp.sprite = s;
+    }
+
+    public void SetFeetSprite(Sprite s)
+    {
+        rightFoot.sprite = s;
+        leftFoot.sprite = s;
     }
 
     public void UpdateSortingLayer(Transform transform, int id)
