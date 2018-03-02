@@ -52,12 +52,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Animation.cs" />
     <Compile Include="Assets\Scripts\Affectors\HeadSwapper.cs" />
     <Compile Include="Assets\Scripts\Audio\EffectsPlayer.cs" />
     <Compile Include="Assets\Scripts\Audio\MusicPlayer.cs" />
     <Compile Include="Assets\Scripts\Camera\CameraFX.cs" />
     <Compile Include="Assets\Scripts\Camera\CameraPosition.cs" />
-    <Compile Include="Assets\Scripts\Entity\Elevator.cs" />
+    <Compile Include="Assets\Scripts\Entity\PartialElevator.cs" />
     <Compile Include="Assets\Scripts\GameManager\GameController.cs" />
     <Compile Include="Assets\Scripts\Input\InputManager.cs" />
     <Compile Include="Assets\Scripts\Input\PlayerInput.cs" />
