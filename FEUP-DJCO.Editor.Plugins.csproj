@@ -5,16 +5,16 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{1FC136E9-4BF6-A53F-6972-741CEED845F8}</ProjectGuid>
+    <ProjectGuid>{B5304FBD-E5E9-D61A-8426-905C60DDC5B6}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <AssemblyName>Assembly-CSharp</AssemblyName>
+    <AssemblyName>Assembly-CSharp-Editor-firstpass</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{E097FAD1-6243-4DAD-9C02-E9B9EFC3FFC1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
-    <TargetFrameworkProfile>Unity Subset v3.5</TargetFrameworkProfile>
+    <TargetFrameworkProfile>Unity Full v3.5</TargetFrameworkProfile>
     <CompilerResponseFile></CompilerResponseFile>
-    <UnityProjectType>Game:1</UnityProjectType>
+    <UnityProjectType>EditorPlugins:7</UnityProjectType>
     <UnityBuildTarget>StandaloneWindows64:19</UnityBuildTarget>
     <UnityVersion>2017.3.1f1</UnityVersion>
     <RootNamespace></RootNamespace>
@@ -282,30 +282,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Animation.cs" />
-    <Compile Include="Assets\Scripts\Affectors\HeadSwapper.cs" />
-    <Compile Include="Assets\Scripts\Audio\EffectsPlayer.cs" />
-    <Compile Include="Assets\Scripts\Audio\MusicPlayer.cs" />
-    <Compile Include="Assets\Scripts\Camera\CameraFX.cs" />
-    <Compile Include="Assets\Scripts\Camera\CameraPosition.cs" />
-    <Compile Include="Assets\Scripts\Entity\PartialElevator.cs" />
-    <Compile Include="Assets\Scripts\GameManager\GameController.cs" />
-    <Compile Include="Assets\Scripts\Input\InputManager.cs" />
-    <Compile Include="Assets\Scripts\Input\PlayerInput.cs" />
-    <Compile Include="Assets\Scripts\Level Generator\Generator.cs" />
-    <Compile Include="Assets\Scripts\Player\Events\EffectsManager.cs" />
-    <Compile Include="Assets\Scripts\Player\Events\PlayerUIManager.cs" />
-    <Compile Include="Assets\Scripts\Player\IPlayerEvents.cs" />
-    <Compile Include="Assets\Scripts\Player\Movement.cs" />
-    <Compile Include="Assets\Scripts\Player\PickPowerUp.cs" />
-    <Compile Include="Assets\Scripts\Player\PlayerStatus.cs" />
-    <Compile Include="Assets\Scripts\Player\PlayerStyle.cs" />
-    <Compile Include="Assets\Scripts\Player\Selector.cs" />
-    <Compile Include="Assets\Scripts\PowerUps\MovementBoost.cs" />
-    <Compile Include="Assets\Scripts\PowerUps\PowerUp.cs" />
-    <Compile Include="Assets\Scripts\PowerUps\PowerUpGenerator.cs" />
-    <Compile Include="Assets\Scripts\UI\PlayerUIController.cs" />
-    <Compile Include="Assets\Scripts\UI\UIManager.cs" />
+    <Compile Include="Assets\Plugins\Editor\JetBrains\Unity3DRider.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Shaders\ScreenSwitch.shader" />

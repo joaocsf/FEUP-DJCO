@@ -27,7 +27,15 @@ public abstract class PowerUp : ScriptableObject
         }
     }
 
-    public abstract void OnUpdate(float deltaTime);
+    public void UpdateNow(float deltaTime)
+    {
+        if (activated)
+        {
+            OnUpdate(deltaTime);
+        }
+    }
 
-    protected abstract void OnActivate();
+    protected abstract void OnUpdate(float deltaTime);
+
+    protected abstract bool OnActivate();
 }

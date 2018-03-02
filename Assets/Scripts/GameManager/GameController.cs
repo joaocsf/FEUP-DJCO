@@ -125,7 +125,7 @@ public class GameController : MonoBehaviour {
             floor = newFloor;
             generator.SetHighestFloor(highestFloor);
             cameraPosition.SetHighestFloor(highestFloor);
-            Debug.Log(highestFloor);
+            //Debug.Log(highestFloor);
         }
     }
 }

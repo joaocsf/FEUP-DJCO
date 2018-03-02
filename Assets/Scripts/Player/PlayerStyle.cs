@@ -6,6 +6,7 @@ using UnityEngine;
 public class PlayerStyle : MonoBehaviour {
 
     public Color mainColor;
+    public Sprite defaultFeet;
 
     private PlayerStatus status;
     public SpriteRenderer body;
@@ -37,6 +38,12 @@ public class PlayerStyle : MonoBehaviour {
     {
         rightFoot.sprite = s;
         leftFoot.sprite = s;
+    }
+
+    public void ResetFeetSprite()
+    {
+        rightFoot.sprite = defaultFeet;
+        leftFoot.sprite = defaultFeet;
     }
 
     public void UpdateSortingLayer(Transform transform, int id)

@@ -546,6 +546,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainColor: {r: 0, g: 0.37931013, b: 1, a: 1}
+  defaultFeet: {fileID: 21300000, guid: 9948e90cba049604c9cea1e88626419b, type: 3}
   body: {fileID: 212476861934746294}
   head: {fileID: 212265066934284594}
   powerUp: {fileID: 212666319544910428}

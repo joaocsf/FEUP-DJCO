@@ -21,7 +21,6 @@ public class PickPowerUp : MonoBehaviour {
     {
         if (other.gameObject.CompareTag("Power Up"))
         {
-            Debug.Log("Picked it up");
             Destroy(other.gameObject);
 
             powerUp = generator.GetPowerUp(gameObject);
@@ -38,7 +37,7 @@ public class PickPowerUp : MonoBehaviour {
             {
                 powerUp.Activate();
             }
-            powerUp.OnUpdate(Time.deltaTime);
+            powerUp.UpdateNow(Time.deltaTime);
         }
     }
 }

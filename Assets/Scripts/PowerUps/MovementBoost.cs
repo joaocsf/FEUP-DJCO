@@ -7,16 +7,23 @@ public class MovementBoost : PowerUp
     public float jumpSpeed;
     public float effectTime;
     private float elapsedTime = 0;
+    private PlayerStyle style;
 
-    protected override void OnActivate()
+    protected override bool OnActivate()
     {
-        //TODO Change player speed
         Movement m = player.GetComponent<Movement>();
+        style = player.GetComponent<PlayerStyle>();
+
         m.speed = speed;
         m.jumpSpeed = jumpSpeed;
+
+        style.SetPowerUpSprite(null);
+        style.SetFeetSprite(sprite);
+
+        return true;
     }
 
-    public override void OnUpdate(float deltaTime)
+    protected override void OnUpdate(float deltaTime)
     {
         elapsedTime += deltaTime;
         //Debug.Log("Got here " + elapsedTime);
@@ -26,6 +33,7 @@ public class MovementBoost : PowerUp
             m.ResetSpeed();
             m.ResetJumpSpeed();
 
+            style.ResetFeetSprite();
             Destroy(this);
         }
     }
