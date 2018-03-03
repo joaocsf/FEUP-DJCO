@@ -60,8 +60,9 @@ public class PlayerStatus : MonoBehaviour {
             if (gameController != null)
                 gameController.ReportNewFloor(newFloor);
             currentFloor = newFloor;
+            UpdateText();
          }
-        UpdateText();
+       
     }
 
     private void FixedUpdate()

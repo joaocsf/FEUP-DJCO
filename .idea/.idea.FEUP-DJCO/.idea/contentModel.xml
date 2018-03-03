@@ -6,7 +6,6 @@
       <e p="Assembly-CSharp-Editor-firstpass.csproj" t="IncludeRecursive" />
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
-        <e p="Animation.cs" t="Include" />
         <e p="Plugins" t="Include">
           <e p="Editor" t="Include">
             <e p="JetBrains" t="Include">
@@ -27,6 +26,7 @@
             <e p="CameraPosition.cs" t="Include" />
           </e>
           <e p="Entity" t="Include">
+            <e p="Firework.cs" t="Include" />
             <e p="LobbyElevator.cs" t="Include" />
             <e p="PartialElevator.cs" t="Include" />
           </e>
@@ -53,14 +53,17 @@
             <e p="Selector.cs" t="Include" />
           </e>
           <e p="PowerUps" t="Include">
+            <e p="Animation.cs" t="Include" />
             <e p="MovementBoost.cs" t="Include" />
             <e p="PowerUp.cs" t="Include" />
             <e p="PowerUpGenerator.cs" t="Include" />
+            <e p="Spawner.cs" t="Include" />
           </e>
           <e p="UI" t="Include">
             <e p="PlayerUIController.cs" t="Include" />
             <e p="UIManager.cs" t="Include" />
           </e>
+          <e p="WinScene.cs" t="Include" />
         </e>
         <e p="Shaders" t="Include">
           <e p="ScreenSwitch.shader" t="Include" />
