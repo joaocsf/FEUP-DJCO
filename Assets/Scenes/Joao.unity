@@ -1484,10 +1484,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f17a262759a2337419be18251e949ea5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  powerups:
+  firstPowerups:
   - {fileID: 11400000, guid: 5cbafbc6ac59bc44cb2824bc1cccc1a9, type: 2}
+  lastPowerups:
   - {fileID: 11400000, guid: cf51f7ed0f490b14c9e298a16b249651, type: 2}
   - {fileID: 11400000, guid: 7d59dd86071516e46b1ee9e45bcd7526, type: 2}
+  - {fileID: 11400000, guid: 5cbafbc6ac59bc44cb2824bc1cccc1a9, type: 2}
 --- !u!1 &797344507
 GameObject:
   m_ObjectHideFlags: 0

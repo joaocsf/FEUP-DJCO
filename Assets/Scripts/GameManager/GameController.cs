@@ -74,6 +74,7 @@ public class GameController : MonoBehaviour {
 
     private static Generator generator;
     private static CameraPosition cameraPosition;
+    private static List<PlayerStatus> runningPlayers;
 
     private static void UpdateState(GameState state)
     {
@@ -127,10 +128,27 @@ public class GameController : MonoBehaviour {
         return res;
     }
 
+    public static float GetPlayerPosition(PlayerStatus player)
+    {
+        float i = 1;
+        float total = 0;
+        foreach (PlayerStatus s in runningPlayers)
+            if (s.IsActive())
+            {
+                total++;
+                if (s != player
+                    && s.transform.position.y > player.transform.position.y)
+                    i++;
+            }
+        return 1f - i/total;
+    }
+
     public static bool CheckBeginGame(HashSet<PlayerStatus> readyPlayers)
     {
         if (State != GameState.Selection)
             return false;
+
+        runningPlayers = new List<PlayerStatus>(readyPlayers);
 
         return EnabledPlayers() == readyPlayers.Count;
     }
@@ -139,12 +157,10 @@ public class GameController : MonoBehaviour {
     {
         if(highestFloor < newFloor)
         {
-            
             highestFloor = newFloor;
             floor = newFloor;
             generator.SetHighestFloor(highestFloor);
             cameraPosition.SetHighestFloor(highestFloor);
-            //Debug.Log(highestFloor);
         }
     }
 }
