@@ -23,15 +23,10 @@ public class Movement : MonoBehaviour {
     bool jump = false;
 
     private bool active = false;
-
     private Animator anim;
-
     private float jumpInput = 0f;
-
     public float downRay = 0.1f;
-
     private float scaleX = 1;
-
     private void OnDrawGizmos()
     {
 
