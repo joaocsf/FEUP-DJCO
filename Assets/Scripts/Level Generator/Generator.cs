@@ -267,6 +267,10 @@ public class Generator : MonoBehaviour {
             GenerateBrokenFloor(tiles);
             GeneratePowerUps(tiles);
         }
+        else
+        {
+
+        }
         //Unblock the tiles
         for (int i = 0; i < tilesNumber; i++)
         {

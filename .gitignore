@@ -4,3 +4,5 @@
 /ProjectSettings/
 /.vs/
 /.vscode/
+*.csproj
+/.idea/
