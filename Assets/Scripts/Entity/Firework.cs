@@ -1,9 +1,10 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
-public class Firework : MonoBehaviour {
+public class Firework : MonoBehaviour, IEffectorApplierEvents {
 
     public float maxVelocity = 5f;
     public float acceleration = 2f;
@@ -30,11 +31,10 @@ public class Firework : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.GetComponent<PlayerStatus>() != null || other.tag == "Ladder")
+        if (other.tag == "Ladder" || other.tag == "Power Up" || other.GetComponent<PlayerStatus>() != null)
             return;
 
         active = false;
-        GameObject.FindObjectOfType<CameraPosition>().AddTrauma(0.2f);
 
         if(other.tag == "Destructible")
         {
@@ -46,12 +46,22 @@ public class Firework : MonoBehaviour {
             Destroy(other.gameObject);
         }
 
+        transform.position = other.transform.position;
+        OnDelete();
+    }
 
+    public bool OnDelete()
+    {
+
+        GameObject.FindObjectOfType<CameraPosition>().AddTrauma(0.2f);
         renderer.SetActive(false);
         rb.velocity = Vector3.zero;
-        transform.position = other.transform.position;
         explosion.Play();
         Destroy(gameObject, 1);
-        
+        return false;
+    }
+
+    public void OnPickup()
+    {
     }
 }

@@ -9,6 +9,7 @@ public class PlayerStyle : MonoBehaviour {
     public Sprite defaultFeet;
 
     private PlayerStatus status;
+    private Animator anim;
     public SpriteRenderer body;
     public SpriteRenderer head;
     public SpriteRenderer powerUp;
@@ -17,6 +18,7 @@ public class PlayerStyle : MonoBehaviour {
     void Start () {
         status = GetComponent<PlayerStatus>();
         body.color = mainColor;
+        anim = GetComponent<Animator>();
 	}
 	
 	void Update () {
@@ -38,6 +40,11 @@ public class PlayerStyle : MonoBehaviour {
     {
         rightFoot.sprite = s;
         leftFoot.sprite = s;
+    }
+
+    public void SetConfused(bool state)
+    {
+        anim.SetBool("Confused", state);
     }
 
     public void ResetFeetSprite()

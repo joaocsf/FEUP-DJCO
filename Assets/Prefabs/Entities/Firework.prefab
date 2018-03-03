@@ -55,6 +55,7 @@ GameObject:
   - component: {fileID: 54217739247315300}
   - component: {fileID: 114588835409047346}
   - component: {fileID: 65822224678799964}
+  - component: {fileID: 114254152874731282}
   m_Layer: 0
   m_Name: Firework
   m_TagString: Untagged
@@ -99,7 +100,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1490037372201572}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.86, y: -1.49, z: -0.5}
+  m_LocalPosition: {x: -6.86, y: -1.6, z: -0.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4792600964585006}
@@ -160,7 +161,21 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.2, y: 0.5, z: 1}
-  m_Center: {x: 0, y: 0.25, z: 0}
+  m_Center: {x: 0, y: 0.35, z: 0}
+--- !u!114 &114254152874731282
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1490037372201572}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c3c8bd0c48b95b4c8895943d7939056, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  effector: {fileID: 11400000, guid: b420f611129486b43917bbefa5244ea2, type: 2}
+  destroyOnEffect: 1
+  delayTime: 0.5
 --- !u!114 &114588835409047346
 MonoBehaviour:
   m_ObjectHideFlags: 1
