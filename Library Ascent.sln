@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2017
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Library Ascent", "Library Ascent.csproj", "{706E8EE6-6ED0-57E8-5598-B7635DA5B359}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Library Ascent.Editor.Plugins", "Library Ascent.Editor.Plugins.csproj", "{A38A9852-48DD-2046-C031-50BF50B5F350}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,6 +15,10 @@ Global
 		{706E8EE6-6ED0-57E8-5598-B7635DA5B359}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{706E8EE6-6ED0-57E8-5598-B7635DA5B359}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{706E8EE6-6ED0-57E8-5598-B7635DA5B359}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A38A9852-48DD-2046-C031-50BF50B5F350}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A38A9852-48DD-2046-C031-50BF50B5F350}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A38A9852-48DD-2046-C031-50BF50B5F350}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A38A9852-48DD-2046-C031-50BF50B5F350}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

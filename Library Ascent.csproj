@@ -13,13 +13,11 @@
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>Unity Subset v3.5</TargetFrameworkProfile>
-    <CompilerResponseFile>
-    </CompilerResponseFile>
+    <CompilerResponseFile></CompilerResponseFile>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>StandaloneWindows64:19</UnityBuildTarget>
     <UnityVersion>2017.3.0f3</UnityVersion>
-    <RootNamespace>
-    </RootNamespace>
+    <RootNamespace></RootNamespace>
     <LangVersion>4</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -45,7 +43,7 @@
   <ItemGroup>
     <Reference Include="mscorlib" />
     <Reference Include="System" />
-    <Reference Include="System.Xml" />
+    <Reference Include="System.XML" />
     <Reference Include="System.Core" />
     <Reference Include="Boo.Lang" />
     <Reference Include="UnityScript.Lang" />
@@ -214,7 +212,7 @@
       <HintPath>Library\UnityAssemblies\UnityEngine.TestRunner.dll</HintPath>
     </Reference>
     <Reference Include="nunit.framework">
-      <HintPath>C:/Program Files/Unity/Editor\Data/Managed/nunit.framework.dll</HintPath>
+      <HintPath>Library\UnityAssemblies\nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.Timeline">
       <HintPath>Library\UnityAssemblies\UnityEngine.Timeline.dll</HintPath>
@@ -290,11 +288,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Animation.cs" />
     <Compile Include="Assets\Scripts\Affectors\HeadSwapper.cs" />
     <Compile Include="Assets\Scripts\Audio\EffectsPlayer.cs" />
     <Compile Include="Assets\Scripts\Audio\MusicPlayer.cs" />
     <Compile Include="Assets\Scripts\Camera\CameraFX.cs" />
     <Compile Include="Assets\Scripts\Camera\CameraPosition.cs" />
+    <Compile Include="Assets\Scripts\Entity\LobbyElevator.cs" />
+    <Compile Include="Assets\Scripts\Entity\PartialElevator.cs" />
     <Compile Include="Assets\Scripts\GameManager\GameController.cs" />
     <Compile Include="Assets\Scripts\Input\InputManager.cs" />
     <Compile Include="Assets\Scripts\Input\PlayerInput.cs" />
@@ -307,7 +308,6 @@
     <Compile Include="Assets\Scripts\Player\PlayerStatus.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerStyle.cs" />
     <Compile Include="Assets\Scripts\Player\Selector.cs" />
-    <Compile Include="Assets\Scripts\PowerUps\Elevator.cs" />
     <Compile Include="Assets\Scripts\PowerUps\MovementBoost.cs" />
     <Compile Include="Assets\Scripts\PowerUps\PowerUp.cs" />
     <Compile Include="Assets\Scripts\PowerUps\PowerUpGenerator.cs" />

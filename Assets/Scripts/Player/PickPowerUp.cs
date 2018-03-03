@@ -21,7 +21,7 @@ public class PickPowerUp : MonoBehaviour {
     {
         if (other.gameObject.CompareTag("Power Up"))
         {
-            Destroy(other.gameObject);
+            //Destroy(other.gameObject);
 
             powerUp = generator.GetPowerUp(gameObject);
 

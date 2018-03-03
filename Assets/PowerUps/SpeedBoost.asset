@@ -13,6 +13,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   immediateActivate: 0
   sprite: {fileID: 21300000, guid: 39b896beaaa904848af36fabcdce10dd, type: 3}
-  speed: 2
+  speed: 2.5
   jumpSpeed: 4.5
-  effectTime: 10
+  effectTime: 2

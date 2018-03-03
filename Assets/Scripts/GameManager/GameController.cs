@@ -56,6 +56,8 @@ public class GameController : MonoBehaviour {
         set { UpdateEndGame(value); }
     }
 
+    private static PlayerStatus[] players;
+
     public static int highestFloor = 0;
     private static GameState gameState;
     private static GameObject selectionBehaviours;
@@ -63,7 +65,7 @@ public class GameController : MonoBehaviour {
     private static MusicPlayer musicPlayer;
     private static int floor;
     private static bool endGame = false;
- 
+
     public static GameState State
     {
         get { return gameState; }
@@ -105,6 +107,7 @@ public class GameController : MonoBehaviour {
         musicPlayer = GameObject.FindObjectOfType<MusicPlayer>();
         oldState = state;
         State = state;
+        players = FindObjectsOfType<PlayerStatus>();
     }
 
     void Update()
@@ -114,6 +117,22 @@ public class GameController : MonoBehaviour {
             oldState = state;
             State = state;
         }
+    }
+
+    private static int EnabledPlayers()
+    {
+        int res = 0;
+        foreach(PlayerStatus status in players)
+            res += status.IsActive() ? 1 : 0;
+        return res;
+    }
+
+    public static bool CheckBeginGame(HashSet<PlayerStatus> readyPlayers)
+    {
+        if (State != GameState.Selection)
+            return false;
+
+        return EnabledPlayers() == readyPlayers.Count;
     }
 
     public void ReportNewFloor(int newFloor)

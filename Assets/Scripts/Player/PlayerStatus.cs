@@ -111,6 +111,12 @@ public class PlayerStatus : MonoBehaviour {
 
         movement.Activate(state);
     }
+
+    public bool IsActive()
+    {
+        return active;
+    }
+
     public void OnTriggerEnter(Collider other)
     {
         if(other.tag == "Ready")
