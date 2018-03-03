@@ -27,6 +27,7 @@
             <e p="CameraPosition.cs" t="Include" />
           </e>
           <e p="Entity" t="Include">
+            <e p="LobbyElevator.cs" t="Include" />
             <e p="PartialElevator.cs" t="Include" />
           </e>
           <e p="GameManager" t="Include">
