@@ -7,19 +7,15 @@ public class MovementBoost : PowerUp
     public float jumpSpeed;
     public float effectTime;
     private float elapsedTime = 0;
-    private PlayerStyle style;
 
     protected override bool OnActivate()
     {
         Movement m = player.GetComponent<Movement>();
-        style = player.GetComponent<PlayerStyle>();
 
         m.speed = speed;
         m.jumpSpeed = jumpSpeed;
 
-        style.SetPowerUpSprite(null);
         style.SetFeetSprite(sprite);
-
         return true;
     }
 

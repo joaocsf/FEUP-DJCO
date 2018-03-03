@@ -8,9 +8,11 @@ public abstract class PowerUp : ScriptableObject
     private bool activated = false;
     protected GameObject player;
     public Sprite sprite;
+    protected PlayerStyle style;
 
     public virtual void Initialize(GameObject player)
     {
+        style = player.GetComponent<PlayerStyle>();
         this.player = player;
         if (immediateActivate)
         {
@@ -22,8 +24,9 @@ public abstract class PowerUp : ScriptableObject
     {
         if (!activated)
         {
-            activated = true;
-            OnActivate();
+            activated = OnActivate();
+            if (activated)
+                style.SetPowerUpSprite(null);
         }
     }
 

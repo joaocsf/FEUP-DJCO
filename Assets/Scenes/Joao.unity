@@ -1131,7 +1131,7 @@ MonoBehaviour:
   height: 0
   doorStart: {x: 0, y: -2, z: 0}
   yOffset: 1.7
-  doorIter: 50
+  doorIter: 20
   floorIter: 200
   doorTime: 0.01
   floorTime: 0.1
@@ -1309,6 +1309,52 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &650190183
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4312782397539248, guid: d68961a06e134a545b156133a8933af7, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -6.86
+      objectReference: {fileID: 0}
+    - target: {fileID: 4312782397539248, guid: d68961a06e134a545b156133a8933af7, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -1.49
+      objectReference: {fileID: 0}
+    - target: {fileID: 4312782397539248, guid: d68961a06e134a545b156133a8933af7, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4312782397539248, guid: d68961a06e134a545b156133a8933af7, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4312782397539248, guid: d68961a06e134a545b156133a8933af7, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4312782397539248, guid: d68961a06e134a545b156133a8933af7, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4312782397539248, guid: d68961a06e134a545b156133a8933af7, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4312782397539248, guid: d68961a06e134a545b156133a8933af7, type: 2}
+      propertyPath: m_RootOrder
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 1490037372201572, guid: d68961a06e134a545b156133a8933af7, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: d68961a06e134a545b156133a8933af7, type: 2}
+  m_IsPrefabParent: 0
 --- !u!114 &672283028 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 114185916781365636, guid: 049182c89513eb643b607bbaec17451e,
@@ -1439,6 +1485,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   powerups:
+  - {fileID: 11400000, guid: 5cbafbc6ac59bc44cb2824bc1cccc1a9, type: 2}
   - {fileID: 11400000, guid: cf51f7ed0f490b14c9e298a16b249651, type: 2}
   - {fileID: 11400000, guid: 7d59dd86071516e46b1ee9e45bcd7526, type: 2}
 --- !u!1 &797344507
@@ -4306,7 +4353,7 @@ MonoBehaviour:
   tilesNumber: 11
   initialFloors: 9
   generateFloorsAbove: 3
-  powerUpChance: 6
+  powerUpChance: 9
   elevatorChance: 48
   brokenChance: 54
   brokenChanceGrowth: 1
