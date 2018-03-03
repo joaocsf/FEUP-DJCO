@@ -60,8 +60,8 @@ public class PlayerStatus : MonoBehaviour {
             if (gameController != null)
                 gameController.ReportNewFloor(newFloor);
             currentFloor = newFloor;
-            UpdateText();
-        }
+         }
+        UpdateText();
     }
 
     private void FixedUpdate()
@@ -79,7 +79,8 @@ public class PlayerStatus : MonoBehaviour {
             GameController.EndGame = true;
         }
         else
-            controller.SetScoreText(currentFloor >= 0 ? currentFloor.ToString() : "");
+           controller.SetScoreText(currentFloor >= 0 ? currentFloor.ToString() : "");
+
 
     }
 

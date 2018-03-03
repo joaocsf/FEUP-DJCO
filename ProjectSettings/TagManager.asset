@@ -8,6 +8,7 @@ TagManager:
   - Power Up
   - PlayerUI
   - Elevator
+  - Destructible
   layers:
   - Default
   - TransparentFX

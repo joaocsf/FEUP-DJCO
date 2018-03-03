@@ -94,7 +94,7 @@ public class GameController : MonoBehaviour {
                 break;
         }
     }
-    public static void UpdateEndGame(bool value)
+    private static void UpdateEndGame(bool value)
     {
         endGame = value;
     }

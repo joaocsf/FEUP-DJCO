@@ -21,8 +21,10 @@ public class PickPowerUp : MonoBehaviour {
     {
         if (other.gameObject.CompareTag("Power Up"))
         {
-            //Destroy(other.gameObject);
-
+            if(powerUp != null)
+            {
+                powerUp.OnDeactivate();
+            }
             powerUp = generator.GetPowerUp(gameObject);
 
             style.SetPowerUpSprite(powerUp.sprite);
