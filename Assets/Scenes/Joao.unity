@@ -1487,11 +1487,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   firstPowerups:
   - {fileID: 11400000, guid: 5cbafbc6ac59bc44cb2824bc1cccc1a9, type: 2}
-  - {fileID: 11400000, guid: 5cbafbc6ac59bc44cb2824bc1cccc1a9, type: 2}
+  - {fileID: 11400000, guid: 3816dc19be0f1ff41aba6d39ad61eee9, type: 2}
   lastPowerups:
   - {fileID: 11400000, guid: 7d59dd86071516e46b1ee9e45bcd7526, type: 2}
   - {fileID: 11400000, guid: cf51f7ed0f490b14c9e298a16b249651, type: 2}
-  - {fileID: 11400000, guid: 3816dc19be0f1ff41aba6d39ad61eee9, type: 2}
+  - {fileID: 11400000, guid: 5cbafbc6ac59bc44cb2824bc1cccc1a9, type: 2}
 --- !u!1 &797344507
 GameObject:
   m_ObjectHideFlags: 0
@@ -7920,9 +7920,9 @@ MonoBehaviour:
   tilesNumber: 11
   initialFloors: 9
   generateFloorsAbove: 3
-  powerUpChance: 9
+  powerUpChance: 10
   elevatorChance: 48
-  brokenChance: 54
+  brokenChance: 23
   brokenChanceGrowth: 1
   stairsMinimum: 1
   stairsMaximum: 2

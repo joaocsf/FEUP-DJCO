@@ -16,8 +16,11 @@ public class PartialElevator : MonoBehaviour
 	{
 		if (other.gameObject.CompareTag("Player"))
 		{
-			player = other.gameObject;
-			goIn = true;
+            if (GameController.GetPlayerPosition(other.GetComponent<PlayerStatus>()) < 0.5f)
+            {
+                player = other.gameObject;
+                goIn = true;
+            }
 		}
 	}
 	
