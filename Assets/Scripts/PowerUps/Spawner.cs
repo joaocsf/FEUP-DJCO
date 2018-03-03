@@ -7,12 +7,13 @@ public class Spawner : PowerUp
 {
     public GameObject prefab;
     public int ammo = 1;
+
     protected override bool OnActivate()
     {
         ammo--;
         GameObject.Instantiate(prefab, player.transform.position, Quaternion.identity);
-        if(ammo <= 0)
-            Destroy(this);
+        if (ammo <= 0)
+            OnDeactivate(); 
 
         return ammo <= 0;
     }

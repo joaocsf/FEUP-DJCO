@@ -14,4 +14,4 @@ MonoBehaviour:
   immediateActivate: 0
   sprite: {fileID: 21300000, guid: 679aec03376686e4987096a05569d77a, type: 3}
   prefab: {fileID: 1490037372201572, guid: d68961a06e134a545b156133a8933af7, type: 2}
-  ammo: 1
+  ammo: 2

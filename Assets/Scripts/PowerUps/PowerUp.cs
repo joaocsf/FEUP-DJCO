@@ -41,4 +41,10 @@ public abstract class PowerUp : ScriptableObject
     protected abstract void OnUpdate(float deltaTime);
 
     protected abstract bool OnActivate();
+
+    public virtual void OnDeactivate()
+    {
+        style.SetPowerUpSprite(null);
+        Destroy(this);
+    }
 }
