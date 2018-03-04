@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
-public class Firework : MonoBehaviour, IEffectorApplierEvents {
+public class PartialFirework : MonoBehaviour, IEffectorApplierEvents {
 
     public float maxVelocity = 5f;
     public float acceleration = 2f;
