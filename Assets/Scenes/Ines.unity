@@ -1792,10 +1792,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   firstPowerups:
   - {fileID: 11400000, guid: ae205681c5c881949a2913124c977741, type: 2}
-  lastPowerups:
-  - {fileID: 11400000, guid: 7d59dd86071516e46b1ee9e45bcd7526, type: 2}
-  - {fileID: 11400000, guid: cf51f7ed0f490b14c9e298a16b249651, type: 2}
+  - {fileID: 11400000, guid: 3816dc19be0f1ff41aba6d39ad61eee9, type: 2}
   - {fileID: 11400000, guid: 5cbafbc6ac59bc44cb2824bc1cccc1a9, type: 2}
+  lastPowerups:
+  - {fileID: 11400000, guid: 3816dc19be0f1ff41aba6d39ad61eee9, type: 2}
 --- !u!1 &760874085
 GameObject:
   m_ObjectHideFlags: 0
@@ -8439,10 +8439,6 @@ Prefab:
     - target: {fileID: 4206739609151816, guid: 06aac42026ea5444d90dd284c08fd0ea, type: 2}
       propertyPath: m_RootOrder
       value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 1483074873387136, guid: 06aac42026ea5444d90dd284c08fd0ea, type: 2}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 06aac42026ea5444d90dd284c08fd0ea, type: 2}

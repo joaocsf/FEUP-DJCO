@@ -67,17 +67,6 @@ public class TrashBag : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.GetComponent<PlayerStatus>() != null)
-        {
-            if (!thrown)
-            {
-                thrown = true;
-            }
-            else
-            {
-                StartCoroutine(StunPlayer(other.GetComponent<Movement>()));
-            }
-        }
         if(other.tag == "Wall")
         {
             thrust = -thrust;

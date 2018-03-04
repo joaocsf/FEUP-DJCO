@@ -6,12 +6,17 @@ using System;
 public class Spawner : PowerUp
 {
     public GameObject prefab;
+    public float placementDelta;
     public int ammo = 1;
 
     protected override bool OnActivate()
     {
         ammo--;
-        GameObject.Instantiate(prefab, player.transform.position, Quaternion.identity);
+
+        Vector3 position = player.transform.position;
+        position.x -= placementDelta * player.transform.localScale.x;
+
+        GameObject.Instantiate(prefab, position, Quaternion.identity);
         if (ammo <= 0)
             OnDeactivate(); 
 
