@@ -4,11 +4,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Movement), typeof(PlayerStyle))]
-public class PlayerStatus : MonoBehaviour {
+public class PlayerStatus : MonoBehaviour, ICameraEvents {
 
     public int playerID = 1;
     private int currentFloor = 0;
-    private PlayerUIController controller;
     private GameController gameController;
     public PlayerInput Input { get; private set; }
     private Movement movement;
@@ -24,33 +23,22 @@ public class PlayerStatus : MonoBehaviour {
     }
 	// Use this for initialization
 	IEnumerator Start () {
-
+        FindObjectOfType<CameraPosition>().AddListener(this);
         movement = GetComponent<Movement>();
         style = GetComponent<PlayerStyle>();
         gameController = GameObject.FindObjectOfType<GameController>();
         Input = InputManager.GetInput(playerID);
 
         yield return new WaitForFixedUpdate();
-
-        Active(active);
-        controller = UIManager.instance.createPlayerUI();
+        active = !active;
+        Active(!active);
         style.UpdateSortingLayer(transform, playerID);
-    }
-
-    public void UIEnabled(bool v)
-    {
-        if(controller != null)
-            controller.gameObject.SetActive(v);
-    }
-
-    public void SetHeadSprite(Sprite s)
-    {
-        if (controller != null)
-            controller.SetHeadSprite(s);
     }
 
     // Update is called once per frame
     void Update () {
+
+        if (!active) return;
 
         movement.InputUpdate(Input);
 
@@ -68,26 +56,16 @@ public class PlayerStatus : MonoBehaviour {
     private void FixedUpdate()
     {
         if (active)
-            //Debug.Log(Input.Horizontal());
-        movement.MovementUpdate(Input);
+            movement.MovementUpdate(Input);
     }
 
     private void UpdateText()
     {
         if (currentFloor + 3 < GameController.cameraFloor)
         {
-            controller.SetScoreText("END GAME");
-            GameController.EndGame = true;
+            GameController.PlayerEliminated(this);
+            Active(false);
         }
-        else
-           controller.SetScoreText(currentFloor >= 0 ? currentFloor.ToString() : "");
-
-
-    }
-
-    public void SetReady(bool state)
-    {
-         
     }
 
     private void CallListeners(Action<IPlayerEvents> action)
@@ -97,6 +75,9 @@ public class PlayerStatus : MonoBehaviour {
 
     public void Active(bool state)
     {
+        if (active == state)
+            return;
+
         active = state;
 
         if(state == true)
@@ -119,21 +100,12 @@ public class PlayerStatus : MonoBehaviour {
         return active;
     }
 
-    public void OnTriggerEnter(Collider other)
+    public void OnCameraMove()
     {
-        if(other.tag == "Ready")
-        {
+        if (!active) return;
 
-        }
+        int newFloor = Mathf.FloorToInt(transform.position.y / GameController.floorHeight);
+        currentFloor = newFloor;
+        UpdateText();
     }
-
-    public void OnTriggerExit(Collider other)
-    {
-        if(other.tag == "Ready")
-        {
-
-        }
-        
-    }
-
 }

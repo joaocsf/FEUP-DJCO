@@ -17,6 +17,9 @@ public class MusicPlayer : MonoBehaviour {
     {
         switch (state)
         {
+            case GameController.GameState.Menu:
+                credits.TransitionTo(transition);
+                break;
             case GameController.GameState.Credits:
                 credits.TransitionTo(transition);
                 break;

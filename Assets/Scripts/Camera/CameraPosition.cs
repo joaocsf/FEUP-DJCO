@@ -6,6 +6,8 @@ public class CameraPosition : MonoBehaviour {
 
     private List<Transform> transforms = new List<Transform>();
 
+    private List<ICameraEvents> listeners = new List<ICameraEvents>();
+
     [Range(0,1)]
     public float trauma = 0f;
     public float traumaScale = 2;
@@ -18,9 +20,10 @@ public class CameraPosition : MonoBehaviour {
 
     private int highestFloor = 0;
 
-	void Start () {
-	    	
-	}
+    public void AddListener(ICameraEvents listener)
+    {
+        listeners.Add(listener);
+    }
     
     public void AddTransform(Transform t)
     {
@@ -30,6 +33,7 @@ public class CameraPosition : MonoBehaviour {
     public void SetHighestFloor(int floor)
     {
         highestFloor = floor;
+        listeners.ForEach((x) => x.OnCameraMove());
     }
 
     public void AddTrauma(float ammount)
@@ -38,7 +42,7 @@ public class CameraPosition : MonoBehaviour {
     }
 
 
-    void FixedUpdate () {
+    void Update() {
 
         trauma = Mathf.Clamp(trauma - Time.deltaTime*traumaDecay, 0f, 1f);
 
@@ -55,7 +59,7 @@ public class CameraPosition : MonoBehaviour {
 
         targetPos = center + compensation;
         
-        transform.position = traumaV + Vector3.Lerp(transform.position, targetPos, Time.fixedDeltaTime * smoothRatio);
+        transform.position = traumaV + Vector3.Lerp(transform.position, targetPos, Time.deltaTime* smoothRatio);
 
 	}
 }

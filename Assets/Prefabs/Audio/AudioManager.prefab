@@ -607,9 +607,9 @@ MonoBehaviour:
   racing: {fileID: 245341763565734236, guid: 75e0544cc28ce7b4e957c6bca47e448a, type: 2}
   rush: {fileID: 245051219354159410, guid: 75e0544cc28ce7b4e957c6bca47e448a, type: 2}
   win: {fileID: 245633532724801780, guid: 75e0544cc28ce7b4e957c6bca47e448a, type: 2}
-  credits: {fileID: 245386335418824638, guid: 75e0544cc28ce7b4e957c6bca47e448a, type: 2}
+  credits: {fileID: 245690209414905988, guid: 75e0544cc28ce7b4e957c6bca47e448a, type: 2}
   bpm: 128
-  transition: 3
+  transition: 1
 --- !u!114 &114894897310817154
 MonoBehaviour:
   m_ObjectHideFlags: 1

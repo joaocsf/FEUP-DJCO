@@ -5,19 +5,19 @@ using UnityEngine;
 public class Selector : MonoBehaviour {
 
     public PlayerStatus playerStatus;
-    public bool enabled = false;
+    public bool enable = false;
 
 	void Update () {
         
-        if(playerStatus.Input.Jump() && !enabled)
+        if(playerStatus.Input.Jump() && !enable)
         {
-            enabled = true;
+            enable = true;
             playerStatus.gameObject.transform.position = transform.position;
             playerStatus.Active(true);
         }
-        if(playerStatus.Input.Fire() && enabled)
+        if(playerStatus.Input.Fire() && enable)
         {
-            enabled = false;
+            enable = false;
             playerStatus.Active(false);
         }
         

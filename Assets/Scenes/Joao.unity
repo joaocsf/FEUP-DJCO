@@ -942,7 +942,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   secondaryCamera: {fileID: 1646693106}
   cameraFX: {fileID: 0}
-  iter: 20
+  iter: 50
   time: 0.5
   secondCamera: 1
 --- !u!1 &477489054
@@ -1406,7 +1406,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerStatus: {fileID: 97992277}
-  enabled: 0
+  enable: 0
 --- !u!1 &649963258
 GameObject:
   m_ObjectHideFlags: 0
@@ -2172,7 +2172,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerStatus: {fileID: 1467577133}
-  enabled: 0
+  enable: 0
 --- !u!1 &913275063
 GameObject:
   m_ObjectHideFlags: 0
@@ -5999,78 +5999,6 @@ Prefab:
       propertyPath: m_Name
       value: Player1
       objectReference: {fileID: 0}
-    - target: {fileID: 4010744885015906, guid: 049182c89513eb643b607bbaec17451e, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4010744885015906, guid: 049182c89513eb643b607bbaec17451e, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4010744885015906, guid: 049182c89513eb643b607bbaec17451e, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0.023298033
-      objectReference: {fileID: 0}
-    - target: {fileID: 4010744885015906, guid: 049182c89513eb643b607bbaec17451e, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 0.99972856
-      objectReference: {fileID: 0}
-    - target: {fileID: 4010744885015906, guid: 049182c89513eb643b607bbaec17451e, type: 2}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 2.67
-      objectReference: {fileID: 0}
-    - target: {fileID: 4010744885015906, guid: 049182c89513eb643b607bbaec17451e, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4010744885015906, guid: 049182c89513eb643b607bbaec17451e, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: -0.117
-      objectReference: {fileID: 0}
-    - target: {fileID: 4754373520906950, guid: 049182c89513eb643b607bbaec17451e, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4754373520906950, guid: 049182c89513eb643b607bbaec17451e, type: 2}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4754373520906950, guid: 049182c89513eb643b607bbaec17451e, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4603799579377230, guid: 049182c89513eb643b607bbaec17451e, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: -0.7949444
-      objectReference: {fileID: 0}
-    - target: {fileID: 4603799579377230, guid: 049182c89513eb643b607bbaec17451e, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 0.60668236
-      objectReference: {fileID: 0}
-    - target: {fileID: 4603799579377230, guid: 049182c89513eb643b607bbaec17451e, type: 2}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: -105.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 4826210055922744, guid: 049182c89513eb643b607bbaec17451e, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4826210055922744, guid: 049182c89513eb643b607bbaec17451e, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4826210055922744, guid: 049182c89513eb643b607bbaec17451e, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0.29762486
-      objectReference: {fileID: 0}
-    - target: {fileID: 4826210055922744, guid: 049182c89513eb643b607bbaec17451e, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 0.95468295
-      objectReference: {fileID: 0}
-    - target: {fileID: 4826210055922744, guid: 049182c89513eb643b607bbaec17451e, type: 2}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 34.63
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 049182c89513eb643b607bbaec17451e, type: 2}
   m_IsPrefabParent: 0
@@ -6115,7 +6043,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerStatus: {fileID: 1390846169}
-  enabled: 0
+  enable: 0
 --- !u!1 &984349558
 GameObject:
   m_ObjectHideFlags: 0
@@ -8695,7 +8623,7 @@ MonoBehaviour:
   floorHeight: 2
   floorWidth: 1
   tilesNumber: 11
-  initialFloors: 9
+  initialFloors: 10
   generateFloorsAbove: 3
   powerUpChance: 10
   elevatorChance: 48
@@ -8784,7 +8712,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerStatus: {fileID: 672283028}
-  enabled: 0
+  enable: 0
 --- !u!1 &2021332547
 GameObject:
   m_ObjectHideFlags: 0

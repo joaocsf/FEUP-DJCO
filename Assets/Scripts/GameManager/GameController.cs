@@ -1,6 +1,8 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour {
 
@@ -81,6 +83,7 @@ public class GameController : MonoBehaviour {
     private static Generator generator;
     private static CameraPosition cameraPosition;
     private static List<PlayerStatus> runningPlayers;
+    private static List<PlayerStatus> lostPlayers = new List<PlayerStatus>();
 
     private static void UpdateState(GameState state)
     {
@@ -105,6 +108,15 @@ public class GameController : MonoBehaviour {
                 break;
         }
     }
+
+    public static void PlayerEliminated(PlayerStatus playerStatus)
+    {
+        lostPlayers.Add(playerStatus);
+        runningPlayers.Remove(playerStatus);
+        if (runningPlayers.Count <= 1)
+            State = GameState.Win;
+    }
+
     private static void UpdateEndGame(bool value)
     {
         endGame = value;
@@ -114,12 +126,14 @@ public class GameController : MonoBehaviour {
 
         switcher = FindObjectOfType<CameraSwitch>();
         uiManager = FindObjectOfType<UIManager>();
-        gameState = GameState.Menu;
         winCamera = GameObject.FindGameObjectWithTag("WinCamera").GetComponent<Camera>();
         selectionBehaviours = GameObject.FindObjectOfType<Selector>().transform.parent.gameObject;
         generator = GameObject.FindObjectOfType<Generator>();
         cameraPosition = GameObject.FindObjectOfType<CameraPosition>();
         musicPlayer = GameObject.FindObjectOfType<MusicPlayer>();
+        highestFloor = floor = 0;
+        ReportNewFloor(0);
+        state = GameState.Menu; 
         oldState = state;
         State = state;
         players = FindObjectsOfType<PlayerStatus>();
@@ -128,9 +142,19 @@ public class GameController : MonoBehaviour {
     void Update()
     {
         if (State == GameState.Menu)
-            if(Input.GetKey(KeyCode.Return) || Input.GetButton("Start"))
+        {
+            if (Input.GetButton("Start"))
                 State = GameState.Selection;
-
+            if (Input.GetButton("Back"))
+                Application.Quit();
+        }
+        else
+        {
+            if (Input.GetButton("Back"))
+            {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            }
+        }
         if(oldState != state)
         {
             oldState = state;

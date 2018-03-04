@@ -28,7 +28,6 @@ public class PlayerStyle : MonoBehaviour {
     public void SetHeadSprite(Sprite s)
     {
         head.sprite = s;
-        status.SetHeadSprite(s);
     }
 
     public void SetPowerUpSprite(Sprite s)
