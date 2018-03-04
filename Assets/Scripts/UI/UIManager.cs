@@ -8,6 +8,7 @@ public class UIManager : MonoBehaviour {
 
     public GameObject playerUI;
     public Transform playerSlots;
+    public Animator menuAnimator;
 
 	void Start () {
         instance = this;	
@@ -16,5 +17,10 @@ public class UIManager : MonoBehaviour {
     public PlayerUIController createPlayerUI()
     {
         return Instantiate(playerUI, playerSlots).GetComponent<PlayerUIController>();
+    }
+
+    public void ExitMenu()
+    {
+        menuAnimator.SetBool("exit", true); 
     }
 }

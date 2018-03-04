@@ -6,6 +6,7 @@ public class GameController : MonoBehaviour {
 
     public enum GameState
     {
+        Menu,
         Selection,
         Playing,
         Win,
@@ -65,6 +66,11 @@ public class GameController : MonoBehaviour {
     private static MusicPlayer musicPlayer;
     private static int floor;
     private static bool endGame = false;
+    public static CameraSwitch switcher;
+    public static Camera menuCamera;
+    public static Camera winCamera;
+
+    public static UIManager uiManager;
 
     public static GameState State
     {
@@ -85,11 +91,15 @@ public class GameController : MonoBehaviour {
         switch (state)
         {
             case GameState.Selection:
+                uiManager.ExitMenu();
+                switcher.secondCamera = false;
                 selectionBehaviours.SetActive(true);
                 break;
             case GameState.Playing:
                 break;
             case GameState.Win:
+                switcher.secondaryCamera = winCamera;
+                switcher.secondCamera = true;
                 break;
             case GameState.Credits:
                 break;
@@ -101,7 +111,11 @@ public class GameController : MonoBehaviour {
     }
 
     void Start () {
-        gameState = GameState.Selection;
+
+        switcher = FindObjectOfType<CameraSwitch>();
+        uiManager = FindObjectOfType<UIManager>();
+        gameState = GameState.Menu;
+        winCamera = GameObject.FindGameObjectWithTag("WinCamera").GetComponent<Camera>();
         selectionBehaviours = GameObject.FindObjectOfType<Selector>().transform.parent.gameObject;
         generator = GameObject.FindObjectOfType<Generator>();
         cameraPosition = GameObject.FindObjectOfType<CameraPosition>();
@@ -113,6 +127,10 @@ public class GameController : MonoBehaviour {
 
     void Update()
     {
+        if (State == GameState.Menu)
+            if(Input.GetKey(KeyCode.Return) || Input.GetButton("Start"))
+                State = GameState.Selection;
+
         if(oldState != state)
         {
             oldState = state;

@@ -39,7 +39,6 @@ public class EffectorApplier : MonoBehaviour
 
     public void OnCollision(GameObject other)
     {
-        Debug.Log("HERE" + other.name);
         PlayerEffector effector = other.GetComponent<PlayerEffector>();
         if (effector == null)
             return;

@@ -44,6 +44,7 @@
 			
 			sampler2D _MainTex;
 			sampler2D _Texture;
+			sampler2D _Global2ndCamera;
 			float2 _Position;
 			float _Lerp;
 			float _UseImage;
@@ -52,6 +53,7 @@
 			fixed4 frag (v2f i) : SV_Target
 			{
 				fixed4 col = tex2D(_MainTex, i.uv);
+				fixed4 col2 = tex2D(_Global2ndCamera, i.uv);
 				// just invert the colors
 				float dist = distance(i.uv.xy, _Position.xy);
 
@@ -60,7 +62,7 @@
 						col.rgb = _Color;
 				}else
 					if(tex2D(_Texture,i.uv).r < _Lerp*1.01)
-						col.rgb = _Color;
+						col.rgb = col2.rgb;
 
 				return col;
 			}

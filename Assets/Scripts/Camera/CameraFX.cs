@@ -9,4 +9,9 @@ public class CameraFX : MonoBehaviour{
 	void OnRenderImage(RenderTexture src, RenderTexture dest){
 		Graphics.Blit(src, dest, mat);
 	}
+
+    public void Transition(float f)
+    {
+        mat.SetFloat("_Lerp", f);
+    }
 }
