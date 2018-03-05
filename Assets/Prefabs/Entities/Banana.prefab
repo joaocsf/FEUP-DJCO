@@ -40,7 +40,7 @@ GameObject:
   - component: {fileID: 114277127720683716}
   - component: {fileID: 54435922069567062}
   - component: {fileID: 65083238155114778}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Banana
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -57,7 +57,7 @@ GameObject:
   - component: {fileID: 4279078639331304}
   - component: {fileID: 198592871811018602}
   - component: {fileID: 199726402644362840}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Particles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -128,7 +128,7 @@ BoxCollider:
   m_GameObject: {fileID: 1213886338118508}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 0.3, y: 0.42666668, z: 0.2}
   m_Center: {x: 0, y: 0, z: 0}
@@ -156,6 +156,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   effector: {fileID: 11400000, guid: b420f611129486b43917bbefa5244ea2, type: 2}
+  destroyOnOthers: 0
   destroyOnEffect: 1
   delayTime: 0.5
 --- !u!114 &114277127720683716
@@ -173,6 +174,7 @@ MonoBehaviour:
   - {fileID: 1108344436715752}
   particles:
   - {fileID: 198592871811018602}
+  disableCollider: 1
   time: 1
 --- !u!198 &198592871811018602
 ParticleSystem:
@@ -234,7 +236,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -1964742647
+  randomSeed: -330376857
   InitialModule:
     serializedVersion: 3
     enabled: 1

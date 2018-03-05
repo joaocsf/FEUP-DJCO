@@ -8,6 +8,9 @@ TagManager:
   - Wall
   - Destructible
   - Elevator
+  - PlayerUI
+  - WinCamera
+  - Power Up
   layers:
   - Default
   - TransparentFX
@@ -17,11 +20,11 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - World
+  - Ladder
+  - Player
+  - PowerUp
+  - Items
   - 
   - 
   - 

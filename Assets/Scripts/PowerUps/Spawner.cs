@@ -16,7 +16,12 @@ public class Spawner : PowerUp
         Vector3 position = player.transform.position;
         position.x -= placementDelta * player.transform.localScale.x;
 
-        GameObject.Instantiate(prefab, position, Quaternion.identity);
+        GameObject obj = GameObject.Instantiate(prefab, position, Quaternion.identity);
+
+        Throwable throwable = obj.GetComponent<Throwable>();
+        if (throwable)
+            throwable.SetDirection(player.transform.localScale.x);
+
         if (ammo <= 0)
             OnDeactivate(); 
 

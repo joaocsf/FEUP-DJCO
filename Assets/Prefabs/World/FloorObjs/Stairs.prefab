@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4936497085503454}
   - component: {fileID: 65190991794271586}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Trigger
   m_TagString: Ladder
   m_Icon: {fileID: 0}

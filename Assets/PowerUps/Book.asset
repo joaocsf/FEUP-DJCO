@@ -9,10 +9,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1a0e4803918d9b841a9a539a64684b17, type: 3}
-  m_Name: Banana
+  m_Name: Book
   m_EditorClassIdentifier: 
   immediateActivate: 0
-  sprite: {fileID: 21300000, guid: e7d9ede485b2f7d4785f1069710a0c53, type: 3}
-  prefab: {fileID: 1213886338118508, guid: 811c549dd25e5d1488f5c08e40e80e59, type: 2}
+  sprite: {fileID: 21300000, guid: cf8529fcb95350a4eb758d8c797c9d3b, type: 3}
+  prefab: {fileID: 1186565175693242, guid: 2850e9fcdbbb82440bf899633175941a, type: 2}
   placementDelta: 0
-  ammo: 1
+  ammo: 2

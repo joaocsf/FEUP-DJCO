@@ -5,6 +5,7 @@ using System.Collections.Generic;
 public class EffectorApplier : MonoBehaviour
 {
     public Effector effector;
+    public bool destroyOnOthers = false;
     public bool destroyOnEffect = false;
     public float delayTime = 0;
 
@@ -40,10 +41,11 @@ public class EffectorApplier : MonoBehaviour
     public void OnCollision(GameObject other)
     {
         PlayerEffector effector = other.GetComponent<PlayerEffector>();
-        if (effector == null)
+        if (effector == null && !destroyOnOthers)
             return;
 
-        effector.SetEffector(Instantiate(this.effector) as Effector);
+        if(effector != null)
+            effector.SetEffector(Instantiate(this.effector) as Effector);
 
         listeners.ForEach((o) => o.OnPickup());
 

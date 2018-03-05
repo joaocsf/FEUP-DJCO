@@ -4,13 +4,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
-public class PartialFirework : MonoBehaviour, IEffectorApplierEvents {
+public class Firework : MonoBehaviour, IEffectorApplierEvents {
 
     public float maxVelocity = 5f;
     public float acceleration = 2f;
     public GameObject replacement;
-    public GameObject renderer;
-    public ParticleSystem explosion;
     private bool active = true;
 
     Rigidbody rb;
@@ -47,18 +45,13 @@ public class PartialFirework : MonoBehaviour, IEffectorApplierEvents {
         }
 
         transform.position = other.transform.position;
-        OnDelete();
     }
 
     public bool OnDelete()
     {
-
         GameObject.FindObjectOfType<CameraPosition>().AddTrauma(0.2f);
-        renderer.SetActive(false);
         rb.velocity = Vector3.zero;
-        explosion.Play();
-        Destroy(gameObject, 1);
-        return false;
+        return true;
     }
 
     public void OnPickup()

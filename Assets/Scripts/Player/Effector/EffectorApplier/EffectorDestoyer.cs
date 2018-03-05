@@ -10,6 +10,8 @@ public class EffectorDestoyer : MonoBehaviour, IEffectorApplierEvents
 
     public ParticleSystem[] particles;
 
+    public bool disableCollider = true;
+
     public float time;
 
     public bool OnDelete()
@@ -17,6 +19,10 @@ public class EffectorDestoyer : MonoBehaviour, IEffectorApplierEvents
 
         if (GetComponent<Rigidbody>())
             GetComponent<Rigidbody>().isKinematic = true;
+
+        if (disableCollider)
+            GetComponent<Collider>().enabled = false;
+        Debug.Log(GetComponent<Collider>().enabled = false);
 
         foreach (GameObject obj in disable)
             obj.SetActive(false);

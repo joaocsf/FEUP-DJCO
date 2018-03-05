@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4005195528882996}
   - component: {fileID: 198042042912977406}
   - component: {fileID: 199153694478765258}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36,7 +36,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4206739609151816}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: PowerUp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -55,7 +55,7 @@ GameObject:
   - component: {fileID: 23105241193718348}
   - component: {fileID: 114725218584136030}
   - component: {fileID: 135759100557366410}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Cube
   m_TagString: Power Up
   m_Icon: {fileID: 0}
