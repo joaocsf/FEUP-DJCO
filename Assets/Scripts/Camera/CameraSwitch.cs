@@ -9,7 +9,6 @@ public class CameraSwitch : MonoBehaviour {
     private Camera mainCamera;
     public CameraFX cameraFX;
 
-    public int iter = 10;
     public float time = 10;
 
     public bool secondCamera = true;
@@ -29,17 +28,22 @@ public class CameraSwitch : MonoBehaviour {
     void Update () {
         if(secondCamera != oldSecondCamera)
         {
-            StartCoroutine(AnimSwap());
             oldSecondCamera = secondCamera;
+            Debug.Log(secondCamera + " " + oldSecondCamera);
+            StartCoroutine(AnimSwap());
         }
 	}
 
     IEnumerator UpdateState(float reverse)
     {
-        for(int i = 0; i <= iter; i++)
-        {
-            cameraFX.Transition(Mathf.Abs((float)i / iter - reverse));
-            yield return new WaitForSeconds(time / iter);
+        float currTime = 0;
+        while(currTime <= time){
+            currTime += Time.fixedDeltaTime;
+            float weight = 1f - Mathf.Clamp(currTime/time, 0f, 1f);            
+
+            cameraFX.Transition(Mathf.Abs(weight));
+
+            yield return new WaitForFixedUpdate();
         }
     }
 

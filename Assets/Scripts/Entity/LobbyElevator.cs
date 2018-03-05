@@ -8,8 +8,6 @@ public class LobbyElevator : MonoBehaviour {
     public int height = 0;
     public Vector3 doorStart;
     public float yOffset;
-    public int doorIter = 10;
-    public int floorIter = 10;
     public float doorTime = 0.1f;
     public float floorTime = 0.1f;
     private HashSet<PlayerStatus> playersInside = new HashSet<PlayerStatus>();
@@ -35,13 +33,18 @@ public class LobbyElevator : MonoBehaviour {
             p.transform.parent = t;
     }
 
-    IEnumerator LerpObject(Transform t, int iterations, float time, Vector3 startPos, Vector3 endPos)
+    IEnumerator LerpObject(Transform t, float time, Vector3 startPos, Vector3 endPos)
     {
-         for (int i = 0; i <= iterations; i++){
+       float currTime = 0;
+        while(currTime <= time){
+            currTime += Time.fixedDeltaTime;
+            float weight = Mathf.Clamp(currTime/time, 0f, 1f);            
+
             Vector3 pos = t.localPosition;
-            pos = Vector3.Lerp(startPos, endPos, Mathf.Pow((float)i/iterations, 2));
+            pos = Vector3.Lerp(startPos, endPos, Mathf.Pow(weight, 2));
             t.localPosition = pos;
-            yield return new WaitForSeconds(doorTime/(float)iterations);
+
+            yield return new WaitForFixedUpdate();
         }
     }
 
@@ -55,20 +58,20 @@ public class LobbyElevator : MonoBehaviour {
         if (Physics.Raycast(transform.position - new Vector3(0,0,0.5f), Vector3.up, out hit, 10, lm))
             t = hit.collider.transform;
 
-        yield return LerpObject(doors, doorIter, doorTime, doorStart, Vector3.zero);
-        StartCoroutine(LerpObject(t, doorIter, doorTime, t.localPosition, t.localPosition + Vector3.up * 1.5f));
+        yield return LerpObject(doors, doorTime, doorStart, Vector3.zero);
+        StartCoroutine(LerpObject(t, doorTime, t.localPosition, t.localPosition + Vector3.up * 1.5f));
 
         //SetPlayersParent(transform);
         started = true;
 
 
-        yield return LerpObject(transform, floorIter, floorTime, startPos, startPos + Vector3.up*yOffset);
+        yield return LerpObject(transform, floorTime, startPos, startPos + Vector3.up*yOffset);
 
         yield return new WaitForSeconds(0.5f);
 
         SetPlayersParent(oldParent);
 
-        yield return LerpObject(doors, doorIter, doorTime, Vector3.zero, doorStart);
+        yield return LerpObject(doors, doorTime, Vector3.zero, doorStart);
     }
 
     private void OnTriggerEnter(Collider other)

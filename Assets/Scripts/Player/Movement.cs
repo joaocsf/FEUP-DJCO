@@ -87,6 +87,7 @@ public class Movement : MonoBehaviour {
     {
         active = activated;
         rb.isKinematic = !activated;
+        jumpInput = -1;
     }
 
     public void ResetJumpSpeed()
