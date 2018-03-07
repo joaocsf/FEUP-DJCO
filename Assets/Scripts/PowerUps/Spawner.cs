@@ -22,6 +22,10 @@ public class Spawner : PowerUp
         if (throwable)
             throwable.SetDirection(player.transform.localScale.x);
 
+        TrashBag trashBag = obj.GetComponent<TrashBag>();
+        if (trashBag)
+            trashBag.SetDirection(player.transform.localScale.x);
+
         if (ammo <= 0)
             OnDeactivate(); 
 

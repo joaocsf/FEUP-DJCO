@@ -9,6 +9,7 @@ public class TrashBag : MonoBehaviour {
     private bool lastGrounded;
     private float distToGround;
     private bool thrown = false;
+    private int dir;
 
     Rigidbody rb;
 
@@ -18,6 +19,11 @@ public class TrashBag : MonoBehaviour {
         distToGround = GetComponent<Collider>().bounds.extents.y;
 
         lastGrounded = IsGrounded();
+    }
+
+    public void SetDirection(float dir)
+    {
+        this.dir = (int)(-1*Mathf.Sign(dir));
     }
 
     bool IsGrounded()
@@ -46,8 +52,17 @@ public class TrashBag : MonoBehaviour {
         {
             if (isGrounded)
             {
-                int rand = Random.Range(0, 2)*2 - 1; // -1 or 1
-                thrust = rand * thrust;
+                int randDir;
+                if (!thrown)
+                {
+                    randDir = dir;
+                    Debug.Log("Hello " + dir);
+                }
+                else
+                {
+                    randDir = Random.Range(0, 2) * 2 - 1; // -1 or 1
+                }
+                thrust = randDir * thrust;
             }
             else
             {
