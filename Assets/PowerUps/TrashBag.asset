@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Name: TrashBag
   m_EditorClassIdentifier: 
   immediateActivate: 0
-  sprite: {fileID: 21300000, guid: 215eeb1f14e6e0746878db0e1ac8e31b, type: 3}
+  sprite: {fileID: 21300000, guid: 6021c1344b320fd4f8092d1342d2d8d4, type: 3}
   prefab: {fileID: 1982291613833132, guid: 6057df26617992843b558e69195f81be, type: 2}
-  placementDelta: 0.5
-  ammo: 1
+  placementDelta: 0
+  ammo: 200

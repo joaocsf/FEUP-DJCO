@@ -22,7 +22,6 @@ public class EffectorDestoyer : MonoBehaviour, IEffectorApplierEvents
 
         if (disableCollider)
             GetComponent<Collider>().enabled = false;
-        Debug.Log(GetComponent<Collider>().enabled = false);
 
         foreach (GameObject obj in disable)
             obj.SetActive(false);

@@ -10,6 +10,7 @@ public class TrashBag : MonoBehaviour {
     private float distToGround;
     private bool thrown = false;
     private int dir;
+    public LayerMask mask;
 
     Rigidbody rb;
 
@@ -19,16 +20,24 @@ public class TrashBag : MonoBehaviour {
         distToGround = GetComponent<Collider>().bounds.extents.y;
 
         lastGrounded = IsGrounded();
+        if (lastGrounded)
+        {
+            thrown = true;
+        }
     }
 
     public void SetDirection(float dir)
     {
-        this.dir = (int)(-1*Mathf.Sign(dir));
+        this.dir = (int)(-Mathf.Sign(dir));
+        thrown = false;
+        thrust = this.dir * thrust;
+        if (thrown)
+            this.dir = -1;
     }
 
     bool IsGrounded()
     {
-        return Physics.Raycast(transform.position, -Vector3.up, (float)(distToGround + 0.6));
+        return Physics.Raycast(transform.position, -Vector3.up, (float)(distToGround + 0.6), mask);
     }
 
     IEnumerator StunPlayer(Movement movement)
@@ -52,17 +61,16 @@ public class TrashBag : MonoBehaviour {
         {
             if (isGrounded)
             {
-                int randDir;
                 if (!thrown)
                 {
-                    randDir = dir;
-                    Debug.Log("Hello " + dir);
+                    dir = -1; //zig-zag
+                    thrown = true;
                 }
                 else
                 {
-                    randDir = Random.Range(0, 2) * 2 - 1; // -1 or 1
+                    //randDir = Random.Range(0, 2) * 2 - 1; // -1 or 1
+                    thrust = dir * thrust;
                 }
-                thrust = randDir * thrust;
             }
             else
             {
@@ -74,15 +82,13 @@ public class TrashBag : MonoBehaviour {
 
         if (isGrounded)
         {
-            Vector3 position = gameObject.transform.position;
-            position.y = (float)(position.y + 0.2);
-            rb.AddForceAtPosition(Vector3.right * thrust, position);
+            rb.velocity = Vector3.right * thrust + Vector3.up * rb.velocity.y;
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision other)
     {
-        if(other.tag == "Wall")
+        if(other.collider.tag == "Wall")
         {
             thrust = -thrust;
         }
