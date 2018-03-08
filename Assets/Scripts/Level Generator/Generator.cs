@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Collections;
 using UnityEngine;
 
 public class Generator : MonoBehaviour
@@ -51,6 +52,13 @@ public class Generator : MonoBehaviour
     public Color nightColor = Color.black;
     public int nightColorFloor = 20;
 
+    public GameObject thing;
+    public GameObject floorThing;
+    public float spawnDelta = 1f;
+    public int thingsPerFloor = 2;
+
+    private WaitForSeconds spawnDeltaSeconds;
+
     private enum TileType { Default, Broken, Stairs, Elevator, PowerUp, BrokenPowerUp }
 
     private int currentFloor = 0;
@@ -90,11 +98,9 @@ public class Generator : MonoBehaviour
         alphaKeys[1].time = 1.0F;*/
         gradient.SetKeys(colorKeys, alphaKeys);
 
-        //Initiate Floors
-        /*
-         * positive number -
-         * negative number -
-         */
+        spawnDeltaSeconds = new WaitForSeconds(spawnDelta);
+        StartCoroutine(SpawnThings());
+
         tilesBlocked = new BlockType[tilesNumber];
         for (int i = 0; i < initialFloors; i++)
         {
@@ -116,10 +122,36 @@ public class Generator : MonoBehaviour
         {
             AddFloor();
             DeleteFloor();
+            SpawnThingsEachFloor();
             if (debug)
                 Debug.Log("New Highest Floor: " + highestFloor);
         }
 
+    }
+
+    private IEnumerator SpawnThings()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(spawnDelta);
+            if (thing != null)
+            {
+                GameObject obj = GameObject.Instantiate(thing);
+                obj.transform.localPosition = new Vector3(Random.Range(0, floorWidth * tilesNumber) * -1, currentFloor * floorHeight, -0.5f);
+                Debug.Log("Spawn Thing");
+            }
+        } 
+    }
+
+    private void SpawnThingsEachFloor()
+    {
+        if (floorThing == null)
+            return;
+        for (int i = 0; i < thingsPerFloor; i++)
+        {
+            GameObject obj = GameObject.Instantiate(floorThing);
+            obj.transform.localPosition = new Vector3(Random.Range(0, floorWidth * tilesNumber) * -1, currentFloor * floorHeight, -0.5f);
+        }
     }
 
     private void AddFloor()
@@ -265,7 +297,7 @@ public class Generator : MonoBehaviour
      **/
     private TileType[] GenerateFloor()
     {
-        PrintBlock("Floor " + currentFloor + " before gen");
+        //PrintBlock("Floor " + currentFloor + " before gen");
         //Generate default tiles
         TileType[] tiles = new TileType[tilesNumber];
         floorTiles.Add(tiles);
@@ -276,9 +308,9 @@ public class Generator : MonoBehaviour
             GenerateBrokenFloor(tiles);
             GeneratePowerUps(tiles);
         }
-        PrintBlock("Floor " + currentFloor + " after gen");
+        //PrintBlock("Floor " + currentFloor + " after gen");
         UnblockTiles();
-        PrintBlock("Floor " + currentFloor + " after unblock");
+        //PrintBlock("Floor " + currentFloor + " after unblock");
         if (debug)
         {
             string str = "[";
