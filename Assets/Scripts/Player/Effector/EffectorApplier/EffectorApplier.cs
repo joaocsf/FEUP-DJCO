@@ -9,13 +9,19 @@ public class EffectorApplier : MonoBehaviour
     public bool destroyOnEffect = false;
     public float delayTime = 0;
 
+    public float autoDestroy = 10f;
+
+    private bool destroyed = false;
     private List<IEffectorApplierEvents> listeners = new List<IEffectorApplierEvents>();
 
-    void Start()
+    IEnumerator Start()
     {
         listeners.AddRange(GetComponents<IEffectorApplierEvents>());
         if (delayTime > 0f)
             GetComponent<Collider>().enabled = false;
+
+        yield return new WaitForSeconds(autoDestroy);
+        destroy();
     }
 
     private void Update()
@@ -38,14 +44,11 @@ public class EffectorApplier : MonoBehaviour
         return res;
     }
 
-    public void OnCollision(GameObject other)
-    {
-        PlayerEffector effector = other.GetComponent<PlayerEffector>();
-        if (effector == null && !destroyOnOthers)
+    public void destroy(){
+        if(destroyed)
             return;
 
-        if(effector != null)
-            effector.SetEffector(Instantiate(this.effector) as Effector);
+        destroyed = true;
 
         listeners.ForEach((o) => o.OnPickup());
 
@@ -55,7 +58,21 @@ public class EffectorApplier : MonoBehaviour
             if(canDestoy)
                 Destroy(gameObject);
         }
+ 
     }
+
+    public void OnCollision(GameObject other)
+    {
+        
+        PlayerEffector effector = other != null? other.GetComponent<PlayerEffector>() : null;
+        if (effector == null && !destroyOnOthers)
+            return;
+
+        if(effector != null)
+            effector.SetEffector(Instantiate(this.effector) as Effector);
+
+        destroy();
+   }
 
     private void OnTriggerEnter(Collider other)
     {

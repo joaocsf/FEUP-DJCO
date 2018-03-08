@@ -17,6 +17,7 @@ public class PartialElevator : MonoBehaviour
 
 	void OnTriggerEnter(Collider other)
 	{
+		if(player != null) return;
 		if (other.gameObject.CompareTag("Player"))
 		{
             if (GameController.GetPlayerPosition(other.GetComponent<PlayerStatus>()) < 0.5f)

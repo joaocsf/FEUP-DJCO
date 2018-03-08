@@ -159,6 +159,7 @@ MonoBehaviour:
   destroyOnOthers: 0
   destroyOnEffect: 1
   delayTime: 0.5
+  autoDestroy: 50
 --- !u!114 &114277127720683716
 MonoBehaviour:
   m_ObjectHideFlags: 1
