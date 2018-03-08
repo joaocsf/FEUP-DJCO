@@ -5,10 +5,9 @@ using UnityEngine;
 public class TrashBag : MonoBehaviour {
 
     public float thrust;
-    public float stunTime;
     private bool lastGrounded;
     private float distToGround;
-    private bool thrown = false;
+    private bool firstThrow = false;
     private int dir;
     public LayerMask mask;
 
@@ -22,36 +21,22 @@ public class TrashBag : MonoBehaviour {
         lastGrounded = IsGrounded();
         if (lastGrounded)
         {
-            thrown = true;
+            firstThrow = true;
         }
     }
 
     public void SetDirection(float dir)
     {
         this.dir = (int)(-Mathf.Sign(dir));
-        thrown = false;
+
         thrust = this.dir * thrust;
-        if (thrown)
+        if (!firstThrow)
             this.dir = -1;
     }
 
     bool IsGrounded()
     {
         return Physics.Raycast(transform.position, -Vector3.up, (float)(distToGround + 0.6), mask);
-    }
-
-    IEnumerator StunPlayer(Movement movement)
-    {
-        float oldSpeed = movement.speed;
-        float oldJump = movement.jumpSpeed;
-        
-        movement.speed = 0;
-        movement.jumpSpeed = 0;
-        yield return new WaitForSeconds(stunTime);
-        movement.speed = oldSpeed;
-        movement.jumpSpeed = oldJump;
-
-        Destroy(gameObject, 0);
     }
 
     void FixedUpdate()
@@ -61,14 +46,13 @@ public class TrashBag : MonoBehaviour {
         {
             if (isGrounded)
             {
-                if (!thrown)
+                if (!firstThrow)
                 {
                     dir = -1; //zig-zag
-                    thrown = true;
+                    firstThrow = true;
                 }
                 else
                 {
-                    //randDir = Random.Range(0, 2) * 2 - 1; // -1 or 1
                     thrust = dir * thrust;
                 }
             }
