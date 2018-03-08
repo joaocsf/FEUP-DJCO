@@ -39,9 +39,9 @@ public class CameraSwitch : MonoBehaviour {
         float currTime = 0;
         while(currTime <= time){
             currTime += Time.fixedDeltaTime;
-            float weight = 1f - Mathf.Clamp(currTime/time, 0f, 1f);            
+            float weight = Mathf.Clamp(currTime/time, 0f, 1f);            
 
-            cameraFX.Transition(Mathf.Abs(weight));
+            cameraFX.Transition(Mathf.Abs(weight - reverse));
 
             yield return new WaitForFixedUpdate();
         }

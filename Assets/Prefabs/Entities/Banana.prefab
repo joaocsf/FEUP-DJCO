@@ -172,10 +172,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   disable:
   - {fileID: 1108344436715752}
+  enable: []
   particles:
   - {fileID: 198592871811018602}
   disableCollider: 1
-  time: 1
+  time: 2
 --- !u!198 &198592871811018602
 ParticleSystem:
   m_ObjectHideFlags: 1
@@ -236,7 +237,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -330376857
+  randomSeed: -519018546
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -1336,10 +1337,10 @@ ParticleSystem:
     sprites:
     - sprite: {fileID: 0}
   VelocityModule:
-    enabled: 0
+    enabled: 1
     x:
       serializedVersion: 2
-      minMaxState: 0
+      minMaxState: 3
       scalar: 0
       minScalar: 0
       maxCurve:
@@ -1380,9 +1381,9 @@ ParticleSystem:
         m_RotationOrder: 4
     y:
       serializedVersion: 2
-      minMaxState: 0
-      scalar: 0
-      minScalar: 0
+      minMaxState: 3
+      scalar: -1
+      minScalar: 1
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -1421,7 +1422,7 @@ ParticleSystem:
         m_RotationOrder: 4
     z:
       serializedVersion: 2
-      minMaxState: 0
+      minMaxState: 3
       scalar: 0
       minScalar: 0
       maxCurve:
