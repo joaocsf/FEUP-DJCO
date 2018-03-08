@@ -29,6 +29,16 @@ public class PickPowerUp : MonoBehaviour {
 
             style.SetPowerUpSprite(powerUp.sprite);
         }
+        else if(other.gameObject.GetComponent<SinglePowerUpGenerator>() != null)
+        {
+            SinglePowerUpGenerator gen = other.gameObject.GetComponent<SinglePowerUpGenerator>();
+            if (powerUp != null)
+            {
+                powerUp.OnDeactivate();
+            }
+            powerUp = gen.GetPowerUp(gameObject);
+            Destroy(other.gameObject);
+        }
     }
 
     private void Update()
