@@ -71,6 +71,7 @@ public class GameController : MonoBehaviour {
     public static CameraSwitch switcher;
     public static Camera menuCamera;
     public static Camera winCamera;
+    public static WinScene soloWin;
 
     public static UIManager uiManager;
 
@@ -83,7 +84,7 @@ public class GameController : MonoBehaviour {
     private static Generator generator;
     private static CameraPosition cameraPosition;
     private static List<PlayerStatus> runningPlayers;
-    private static List<PlayerStatus> lostPlayers = new List<PlayerStatus>();
+    private static List<PlayerStatus> lostPlayers;
 
     private static void UpdateState(GameState state)
     {
@@ -101,11 +102,31 @@ public class GameController : MonoBehaviour {
             case GameState.Playing:
                 break;
             case GameState.Win:
-                switcher.secondaryCamera = winCamera;
-                switcher.secondCamera = true;
+                EndScreen();
                 break;
             case GameState.Credits:
                 break;
+        }
+    }
+
+    private static void UpdateDummyLook()
+    {
+
+    }
+
+    private static void EndScreen()
+    {
+        uiManager.UpdateScore(highestFloor);
+        if (runningPlayers.Count == 0) //Solo
+        {
+            soloWin.style.From(lostPlayers[0].GetComponent<PlayerStyle>());
+            switcher.secondaryCamera = soloWin.camera;
+            switcher.secondCamera = true;
+            soloWin.StartAnimation();
+        } else
+        {
+            switcher.secondCamera = winCamera;
+            switcher.secondCamera = true;
         }
     }
 
@@ -113,6 +134,7 @@ public class GameController : MonoBehaviour {
     {
         lostPlayers.Add(playerStatus);
         runningPlayers.Remove(playerStatus);
+        Debug.Log(runningPlayers.Count);
         if (runningPlayers.Count <= 1)
             State = GameState.Win;
     }
@@ -124,6 +146,8 @@ public class GameController : MonoBehaviour {
 
     void Start () {
 
+        lostPlayers = new List<PlayerStatus>();
+        soloWin = FindObjectOfType<WinScene>();
         switcher = FindObjectOfType<CameraSwitch>();
         uiManager = FindObjectOfType<UIManager>();
         winCamera = GameObject.FindGameObjectWithTag("WinCamera").GetComponent<Camera>();

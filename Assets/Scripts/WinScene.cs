@@ -7,16 +7,17 @@ public class WinScene : MonoBehaviour {
     private Rigidbody rb;
     public float speed = 1;
     public float walkTime = 3;
+    public Camera camera;
+
+    public PlayerStyle style;
 
     private bool started = false;
     private float startTime;
 
     public Animator animator;
 
-    // Use this for initialization
     void Start () {
         rb = GetComponent<Rigidbody>();
-        StartAnimation();
     }
 	
 	// Update is called once per frame

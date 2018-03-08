@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Name: Freeze
   m_EditorClassIdentifier: 
   time: 2
-  speedMult: 0
+  speedMult: 0.1
   jumpMult: 0

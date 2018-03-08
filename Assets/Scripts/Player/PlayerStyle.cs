@@ -20,10 +20,17 @@ public class PlayerStyle : MonoBehaviour {
         body.color = mainColor;
         anim = GetComponent<Animator>();
 	}
-	
-	void Update () {
-		
-	}
+
+    public void From(PlayerStyle style)
+    {
+        SetHeadSprite(style.GetHeadSprite());
+        body.color = style.body.color;
+    }
+
+    public Sprite GetHeadSprite()
+    {
+        return head.sprite;
+    }
 
     public void SetHeadSprite(Sprite s)
     {
