@@ -1,7 +1,8 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-public class Generator : MonoBehaviour {
+public class Generator : MonoBehaviour
+{
 
     [Header("General")]
     public bool debug = false;
@@ -53,18 +54,20 @@ public class Generator : MonoBehaviour {
     private enum TileType { Default, Broken, Stairs, Elevator, PowerUp, BrokenPowerUp }
 
     private int currentFloor = 0;
-    
+
     private Gradient gradient = new Gradient();
     private float gradientEnd = 1f;
 
     private List<GameObject> floors = new List<GameObject>();
     private List<TileType[]> floorTiles = new List<TileType[]>();
-    private int[] tilesBlocked;
+    private enum BlockType { None, Stairs, StairsSide, StairsUp, Elevator, ElevatorTunnel, ElevatorExit, ElevatorExitStairsSide}
+    private BlockType[] tilesBlocked;
 
     private GameObject[] players;
     private int highestFloor = 0;
 
-    void Start () {
+    void Start()
+    {
         //Initiate Players
         players = GameObject.FindGameObjectsWithTag("Player");
 
@@ -88,8 +91,12 @@ public class Generator : MonoBehaviour {
         gradient.SetKeys(colorKeys, alphaKeys);
 
         //Initiate Floors
-        tilesBlocked = new int[tilesNumber];
-        for(int i = 0; i < initialFloors; i++)
+        /*
+         * positive number -
+         * negative number -
+         */
+        tilesBlocked = new BlockType[tilesNumber];
+        for (int i = 0; i < initialFloors; i++)
         {
             AddFloor();
         }
@@ -103,12 +110,13 @@ public class Generator : MonoBehaviour {
 
 
     // Update is called once per frame
-    void Update () {
+    void Update()
+    {
         if (currentFloor - highestFloor <= generateFloorsAbove)
         {
             AddFloor();
             DeleteFloor();
-            if(debug)
+            if (debug)
                 Debug.Log("New Highest Floor: " + highestFloor);
         }
 
@@ -139,7 +147,7 @@ public class Generator : MonoBehaviour {
 
         return obj;
     }
-   
+
 
     /**
      * Instantiate a floor
@@ -190,7 +198,7 @@ public class Generator : MonoBehaviour {
 
             }
             SpawnObject(prefab, parent, i);
-        }  
+        }
     }
 
     /**
@@ -226,7 +234,7 @@ public class Generator : MonoBehaviour {
         {
             //Instantiate background wall
             obj = SpawnObject((i % 2 == 0) ? backWall : backSolidWall, parent, i);
-          
+
 
             GameObject prefab;
             switch (tiles[i])
@@ -239,16 +247,16 @@ public class Generator : MonoBehaviour {
                     break;
 
             }
-            if(prefab != null)
+            if (prefab != null)
                 SpawnObject(prefab, parent, i);
 
-            
+
         }//*/
     }
 
     private Color generateColor()
     {
-         return gradient.Evaluate(currentFloor / gradientEnd);
+        return gradient.Evaluate(currentFloor / gradientEnd);
     }
 
 
@@ -257,6 +265,7 @@ public class Generator : MonoBehaviour {
      **/
     private TileType[] GenerateFloor()
     {
+        PrintBlock("Floor " + currentFloor + " before gen");
         //Generate default tiles
         TileType[] tiles = new TileType[tilesNumber];
         floorTiles.Add(tiles);
@@ -267,19 +276,9 @@ public class Generator : MonoBehaviour {
             GenerateBrokenFloor(tiles);
             GeneratePowerUps(tiles);
         }
-        else
-        {
-
-        }
-        //Unblock the tiles
-        for (int i = 0; i < tilesNumber; i++)
-        {
-            if (tilesBlocked[i] > 0)
-                tilesBlocked[i]--;
-            else if (tilesBlocked[i] < 0)
-                tilesBlocked[i]++;
-        }
-
+        PrintBlock("Floor " + currentFloor + " after gen");
+        UnblockTiles();
+        PrintBlock("Floor " + currentFloor + " after unblock");
         if (debug)
         {
             string str = "[";
@@ -294,6 +293,47 @@ public class Generator : MonoBehaviour {
         return tiles;
     }
 
+    private void PrintBlock(string head)
+    {
+        string str = head + ":[";
+        foreach (var t in tilesBlocked)
+        {
+            str += t;
+            str += ";";
+        }
+        str += "]";
+        Debug.Log(str);
+    }
+
+    /**
+    * Blocks Tiles
+    * Made for Stairs 
+    **/
+    private void UnblockTiles()
+    {
+        for (int i = 0; i < tilesNumber; i++)
+        {
+            switch (tilesBlocked[i])
+            {
+                case BlockType.Stairs:
+                case BlockType.StairsSide:
+                case BlockType.ElevatorExitStairsSide:
+                    tilesBlocked[i] = BlockType.StairsUp;
+                    break;
+                case BlockType.Elevator:
+                    tilesBlocked[i] = BlockType.ElevatorTunnel;
+                    break;
+                case BlockType.ElevatorTunnel:
+                    tilesBlocked[i] = BlockType.ElevatorExit;
+                    break;
+                default:
+                    tilesBlocked[i] = BlockType.None;
+                    break;
+            }
+        }
+    }
+
+
     /**
      * Returns the number of free tiles
      **/
@@ -302,12 +342,12 @@ public class Generator : MonoBehaviour {
         int res = 0;
         for (int i = 0; i < tilesBlocked.Length; i++)
         {
-            if (tilesBlocked[i] == 0)
+            if (tilesBlocked[i] == BlockType.None)
                 res++;
         }
         return res;
     }
-   
+
 
     /**
     * Blocks Tiles
@@ -317,10 +357,14 @@ public class Generator : MonoBehaviour {
     {
         for (int i = (tile - radius); i <= (tile + radius); i++)
         {
-            if(i >= 0 && i < tilesBlocked.Length)
-                tilesBlocked[i] = -height;
+            if (i >= 0 && i < tilesBlocked.Length && tilesBlocked[i] != BlockType.ElevatorTunnel) {
+                if (tilesBlocked[i] == BlockType.ElevatorExit)
+                    tilesBlocked[i] = BlockType.ElevatorExitStairsSide;
+                else
+                    tilesBlocked[i] = BlockType.StairsSide;
+                }
         }
-        tilesBlocked[tile] = height;
+        tilesBlocked[tile] = BlockType.Stairs;
     }
 
     /**
@@ -328,12 +372,13 @@ public class Generator : MonoBehaviour {
      **/
     private void GenerateStairs(TileType[] tiles)
     {
-        int stairsNumber = Random.Range(stairsMinimum, stairsMaximum+1);
-        while(stairsNumber > 0) {
-       
+        int stairsNumber = Random.Range(stairsMinimum, stairsMaximum + 1);
+        while (stairsNumber > 0)
+        {
+
             stairsNumber = Mathf.Min(stairsNumber, GetFreeTiles());
             int tile = Random.Range(0, tilesNumber);
-            if (tilesBlocked[tile] == 0 && tiles[tile] == TileType.Default)
+            if (tilesBlocked[tile] == BlockType.None && tiles[tile] == TileType.Default)
             {
                 tiles[tile] = TileType.Stairs;
                 BlockTiles(tile, 2, blockRadius);
@@ -351,14 +396,14 @@ public class Generator : MonoBehaviour {
         if (genElevator)
         {
             int tile = Random.Range(0, tilesNumber);
-            if (tilesBlocked[tile] == 0 && tiles[tile] == TileType.Default)
+            if (tilesBlocked[tile] == BlockType.None && tiles[tile] == TileType.Default)
             {
                 tiles[tile] = TileType.Elevator;
-                tilesBlocked[tile] = 3;
+                tilesBlocked[tile] = BlockType.Elevator;
             }
         }
     }
-    
+
     /**
      * Generates the powerUps
      **/
@@ -367,7 +412,9 @@ public class Generator : MonoBehaviour {
         float change = brokenChance + brokenChanceGrowth * currentFloor;
         for (int tile = 0; tile < tilesNumber; tile++)
         {
-            if (tilesBlocked[tile] <= 0 && Random.Range(0, 100) < change)
+            if (tilesBlocked[tile] != BlockType.Elevator && tilesBlocked[tile] != BlockType.ElevatorExit
+                && tilesBlocked[tile] != BlockType.ElevatorExitStairsSide
+                && tilesBlocked[tile] != BlockType.Stairs && Random.Range(0, 100) < change)
             {
                 tiles[tile] = TileType.Broken;
             }
@@ -381,7 +428,7 @@ public class Generator : MonoBehaviour {
     {
         for (int tile = 0; tile < tilesNumber; tile++)
         {
-            if (tilesBlocked[tile] <= 0 && Random.Range(0, 100) < powerUpChance)
+            if (/*tilesBlocked[tile] <= 0 &&*/ Random.Range(0, 100) < powerUpChance)
             {
                 if (tiles[tile] == TileType.Broken)
                     tiles[tile] = TileType.BrokenPowerUp;
