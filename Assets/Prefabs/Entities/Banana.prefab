@@ -159,6 +159,7 @@ MonoBehaviour:
   destroyOnOthers: 0
   destroyOnEffect: 1
   delayTime: 0.5
+  autoDestroy: 50
 --- !u!114 &114277127720683716
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -172,6 +173,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   disable:
   - {fileID: 1108344436715752}
+  enable: []
   particles:
   - {fileID: 198592871811018602}
   disableCollider: 1
