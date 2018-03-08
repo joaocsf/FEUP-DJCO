@@ -15,4 +15,4 @@ MonoBehaviour:
   sprite: {fileID: 21300000, guid: 6021c1344b320fd4f8092d1342d2d8d4, type: 3}
   prefab: {fileID: 1982291613833132, guid: 6057df26617992843b558e69195f81be, type: 2}
   placementDelta: 0
-  ammo: 200
+  ammo: 1
