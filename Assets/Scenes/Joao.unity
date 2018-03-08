@@ -342,7 +342,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 1fbbc08af8437bc4489bed8f83ba366f, type: 2}
   lastPowerups:
   - {fileID: 11400000, guid: ae205681c5c881949a2913124c977741, type: 2}
-  - {fileID: 11400000, guid: 1fbbc08af8437bc4489bed8f83ba366f, type: 2}
+  - {fileID: 11400000, guid: 5cbafbc6ac59bc44cb2824bc1cccc1a9, type: 2}
 --- !u!4 &148643037
 Transform:
   m_ObjectHideFlags: 0
@@ -570,10 +570,6 @@ Prefab:
     - target: {fileID: 4312782397539248, guid: d68961a06e134a545b156133a8933af7, type: 2}
       propertyPath: m_RootOrder
       value: 19
-      objectReference: {fileID: 0}
-    - target: {fileID: 1490037372201572, guid: d68961a06e134a545b156133a8933af7, type: 2}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d68961a06e134a545b156133a8933af7, type: 2}

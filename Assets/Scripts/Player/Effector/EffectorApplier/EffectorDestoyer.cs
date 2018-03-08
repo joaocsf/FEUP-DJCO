@@ -8,6 +8,8 @@ public class EffectorDestoyer : MonoBehaviour, IEffectorApplierEvents
 
     public GameObject[] disable;
 
+    public GameObject[] enable;
+
     public ParticleSystem[] particles;
 
     public bool disableCollider = true;
@@ -22,6 +24,9 @@ public class EffectorDestoyer : MonoBehaviour, IEffectorApplierEvents
 
         if (disableCollider)
             GetComponent<Collider>().enabled = false;
+
+        foreach (GameObject obj in enable)
+            obj.SetActive(true);
 
         foreach (GameObject obj in disable)
             obj.SetActive(false);
