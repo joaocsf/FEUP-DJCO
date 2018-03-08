@@ -109,11 +109,6 @@ public class GameController : MonoBehaviour {
         }
     }
 
-    private static void UpdateDummyLook()
-    {
-
-    }
-
     private static void EndScreen()
     {
         uiManager.UpdateScore(highestFloor);
@@ -125,7 +120,25 @@ public class GameController : MonoBehaviour {
             soloWin.StartAnimation();
         } else
         {
-            switcher.secondCamera = winCamera;
+            GameObject family = GameObject.FindGameObjectWithTag("DummyFamily");
+
+            for(int i = 0; i < family.transform.childCount; i++)
+            {
+                PlayerStyle style = family.transform.GetChild(i).GetComponent<PlayerStyle>();
+
+                if (i != 0)
+                {
+                    if (lostPlayers.Count <= i - 1)
+                        style.gameObject.SetActive(false);
+                    else
+                        style.From(lostPlayers[lostPlayers.Count - i].GetComponent<PlayerStyle>());
+                }
+                else
+                    style.From(runningPlayers[0].GetComponent<PlayerStyle>());
+
+            }
+
+            switcher.secondaryCamera = winCamera;
             switcher.secondCamera = true;
         }
     }

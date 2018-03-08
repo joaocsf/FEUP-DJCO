@@ -11,6 +11,7 @@ TagManager:
   - PlayerUI
   - WinCamera
   - Power Up
+  - DummyFamily
   layers:
   - Default
   - TransparentFX
