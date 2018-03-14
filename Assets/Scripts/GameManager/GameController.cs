@@ -4,7 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GameController : MonoBehaviour {
+public class GameController : MonoBehaviour
+{
 
     public enum GameState
     {
@@ -12,6 +13,7 @@ public class GameController : MonoBehaviour {
         Selection,
         Playing,
         Win,
+        Lose,
         Credits
     }
 
@@ -53,9 +55,9 @@ public class GameController : MonoBehaviour {
         private set { }
     }
 
-    public static  bool EndGame
+    public static bool EndGame
     {
-        get {return endGame; }
+        get { return endGame; }
         set { UpdateEndGame(value); }
     }
 
@@ -102,45 +104,52 @@ public class GameController : MonoBehaviour {
             case GameState.Playing:
                 break;
             case GameState.Win:
-                EndScreen();
+                EndScreenWin();
+                break;
+            case GameState.Lose:
+                EndScreenLose();
                 break;
             case GameState.Credits:
                 break;
         }
     }
 
-    private static void EndScreen()
+    private static void EndScreenWin()
     {
         uiManager.UpdateScore(highestFloor);
-        if (runningPlayers.Count == 0) //Solo
-        {
-            soloWin.style.From(lostPlayers[0].GetComponent<PlayerStyle>());
-            switcher.secondaryCamera = soloWin.camera;
-            switcher.secondCamera = true;
-            soloWin.StartAnimation();
-        } else
-        {
-            GameObject family = GameObject.FindGameObjectWithTag("DummyFamily");
 
-            for(int i = 0; i < family.transform.childCount; i++)
+        GameObject family = GameObject.FindGameObjectWithTag("DummyFamily");
+
+        for (int i = 0; i < family.transform.childCount; i++)
+        {
+            PlayerStyle style = family.transform.GetChild(i).GetComponent<PlayerStyle>();
+
+            if (i != 0)
             {
-                PlayerStyle style = family.transform.GetChild(i).GetComponent<PlayerStyle>();
-
-                if (i != 0)
-                {
-                    if (lostPlayers.Count <= i - 1)
-                        style.gameObject.SetActive(false);
-                    else
-                        style.From(lostPlayers[lostPlayers.Count - i].GetComponent<PlayerStyle>());
-                }
+                if (lostPlayers.Count <= i - 1)
+                    style.gameObject.SetActive(false);
                 else
-                    style.From(runningPlayers[0].GetComponent<PlayerStyle>());
-
+                    style.From(lostPlayers[lostPlayers.Count - i].GetComponent<PlayerStyle>());
             }
+            else
+                style.From(runningPlayers[0].GetComponent<PlayerStyle>());
 
-            switcher.secondaryCamera = winCamera;
-            switcher.secondCamera = true;
         }
+
+        switcher.secondaryCamera = winCamera;
+        switcher.secondCamera = true;
+
+    }
+
+    private static void EndScreenLose()
+    {
+        uiManager.UpdateScore(highestFloor);
+
+        soloWin.style.From(lostPlayers[0].GetComponent<PlayerStyle>());
+        switcher.secondaryCamera = soloWin.camera;
+        switcher.secondCamera = true;
+        soloWin.StartAnimation();
+
     }
 
     public static void PlayerEliminated(PlayerStatus playerStatus)
@@ -148,8 +157,10 @@ public class GameController : MonoBehaviour {
         lostPlayers.Add(playerStatus);
         runningPlayers.Remove(playerStatus);
         Debug.Log(runningPlayers.Count);
-        if (runningPlayers.Count <= 1)
+        if (runningPlayers.Count == 1)
             State = GameState.Win;
+        else
+            State = GameState.Lose;
     }
 
     private static void UpdateEndGame(bool value)
@@ -157,7 +168,8 @@ public class GameController : MonoBehaviour {
         endGame = value;
     }
 
-    void Start () {
+    void Start()
+    {
 
         lostPlayers = new List<PlayerStatus>();
         soloWin = FindObjectOfType<WinScene>();
@@ -170,7 +182,7 @@ public class GameController : MonoBehaviour {
         musicPlayer = GameObject.FindObjectOfType<MusicPlayer>();
         highestFloor = floor = 0;
         ReportNewFloor(0);
-        state = GameState.Menu; 
+        state = GameState.Menu;
         oldState = state;
         State = state;
         players = FindObjectsOfType<PlayerStatus>();
@@ -192,7 +204,7 @@ public class GameController : MonoBehaviour {
                 SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             }
         }
-        if(oldState != state)
+        if (oldState != state)
         {
             oldState = state;
             State = state;
@@ -202,7 +214,7 @@ public class GameController : MonoBehaviour {
     private static int EnabledPlayers()
     {
         int res = 0;
-        foreach(PlayerStatus status in players)
+        foreach (PlayerStatus status in players)
             res += status.IsActive() ? 1 : 0;
         return res;
     }
@@ -219,7 +231,7 @@ public class GameController : MonoBehaviour {
                     && s.transform.position.y > player.transform.position.y)
                     i++;
             }
-        return 1f - i/total;
+        return 1f - i / total;
     }
 
     public static bool CheckBeginGame(HashSet<PlayerStatus> readyPlayers)
@@ -234,7 +246,7 @@ public class GameController : MonoBehaviour {
 
     public void ReportNewFloor(int newFloor)
     {
-        if(highestFloor < newFloor)
+        if (highestFloor < newFloor)
         {
             highestFloor = newFloor;
             floor = newFloor;
