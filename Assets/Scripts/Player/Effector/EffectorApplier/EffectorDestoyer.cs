@@ -16,7 +16,7 @@ public class EffectorDestoyer : MonoBehaviour, IEffectorApplierEvents
 
     public float time;
 
-    public bool OnDelete()
+    public float OnDelete()
     {
 
         if (GetComponent<Rigidbody>())
@@ -34,10 +34,7 @@ public class EffectorDestoyer : MonoBehaviour, IEffectorApplierEvents
         foreach (ParticleSystem p in particles)
             p.Play();
 
-        Destroy(gameObject, time);
-
-        return false;
-
+        return time;
     }
 
     public void OnPickup()

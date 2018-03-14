@@ -15,4 +15,4 @@ MonoBehaviour:
   sprite: {fileID: 21300000, guid: 39b896beaaa904848af36fabcdce10dd, type: 3}
   speed: 2.5
   jumpSpeed: 4.5
-  effectTime: 2
+  effectTime: 4

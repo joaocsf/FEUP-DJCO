@@ -7,7 +7,7 @@
 	}
 	SubShader
 	{
-		Tags { "Queue"="Geometry"  }
+		Tags { "Queue"="Geometry+1"  }
 		LOD 100
 		ZTest Off
 		ZWrite Off
@@ -15,9 +15,7 @@
 	
 
 		GrabPass
-		{
-			"_BackTexture"
-		}
+		{}
 
 		Pass
 		{
@@ -46,7 +44,7 @@
 			float _Transparency;
 
 			sampler2D _MainTex;
-			sampler2D _BackTexture;
+			sampler2D _GrabTexture;
 			float4 _MainTex_ST;
 			
 			v2f vert (appdata v)
@@ -64,11 +62,10 @@
 				// sample the texture
 				fixed3 displacement = UnpackNormal(tex2D(_MainTex, i.uv));
 				float t = 1- clamp(distance(i.uv, float2(0.5, 0.5)), 0.0, 0.5)/0.5;
-				fixed4 back = tex2D(_BackTexture, i.grabPos + displacement.rg*_Transparency);
+				fixed4 back = tex2D(_GrabTexture, i.grabPos + displacement.rg*_Transparency);
 
 				back.a *= t;
 				// apply fog
-				
 				UNITY_APPLY_FOG(i.fogCoord, col);
 				
 				return back;

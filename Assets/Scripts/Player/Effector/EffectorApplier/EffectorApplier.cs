@@ -28,17 +28,16 @@ public class EffectorApplier : MonoBehaviour
     {
         if (delayTime < 0) return;
         delayTime-= Time.deltaTime;
-        if (delayTime < 0)
+        if (delayTime < 0 && !destroyed)
             GetComponent<Collider>().enabled = true;
     }
 
-    public bool AlertListenersDestroy()
+    public float AlertListenersDestroy()
     {
-        bool res = true;
+        float res = 0;
         listeners.ForEach((lstnr) =>
         {
-            if (!lstnr.OnDelete())
-                res = false;
+            res = Mathf.Max(res, lstnr.OnDelete());
         });
 
         return res;
@@ -54,9 +53,8 @@ public class EffectorApplier : MonoBehaviour
 
         if (destroyOnEffect)
         {
-            bool canDestoy = AlertListenersDestroy();
-            if(canDestoy)
-                Destroy(gameObject);
+            float timeDestroy = AlertListenersDestroy();
+            Destroy(gameObject, timeDestroy);
         }
  
     }
@@ -65,11 +63,15 @@ public class EffectorApplier : MonoBehaviour
     {
         
         PlayerEffector effector = other != null? other.GetComponent<PlayerEffector>() : null;
-        if (effector == null && !destroyOnOthers)
+        EffectorApplier applyer = other != null? other.GetComponent<EffectorApplier>() : null;
+        if (effector == null && applyer == null && !destroyOnOthers)
             return;
 
         if(effector != null)
             effector.SetEffector(Instantiate(this.effector) as Effector);
+
+        if (applyer != null)
+            applyer.destroy();
 
         destroy();
    }

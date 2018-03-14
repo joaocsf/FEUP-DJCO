@@ -8,6 +8,7 @@ public class MusicPlayer : MonoBehaviour {
     public AudioMixerSnapshot racing;
     public AudioMixerSnapshot rush;
     public AudioMixerSnapshot win;
+    public AudioMixerSnapshot lose;
     public AudioMixerSnapshot credits;
     public float bpm = 128;
     public int transition = 1;
@@ -31,6 +32,9 @@ public class MusicPlayer : MonoBehaviour {
                 break;
             case GameController.GameState.Win:
                 win.TransitionTo(transition);
+                break;
+            case GameController.GameState.Lose:
+                lose.TransitionTo(transition);
                 break;
         }
     }
@@ -57,6 +61,10 @@ public class MusicPlayer : MonoBehaviour {
         else if(Input.GetKey(KeyCode.Alpha5))
         {
             credits.TransitionTo(transition);
+        }
+        else if (Input.GetKey(KeyCode.Alpha6))
+        {
+            lose.TransitionTo(transition);
         }
     }
 }

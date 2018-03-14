@@ -47,11 +47,11 @@ public class Firework : MonoBehaviour, IEffectorApplierEvents {
         transform.position = other.transform.position;
     }
 
-    public bool OnDelete()
+    public float OnDelete()
     {
-        GameObject.FindObjectOfType<CameraPosition>().AddTrauma(0.2f);
+        GameObject.FindObjectOfType<CameraPosition>().AddTrauma(0.5f);
         rb.velocity = Vector3.zero;
-        return true;
+        return 0f;
     }
 
     public void OnPickup()

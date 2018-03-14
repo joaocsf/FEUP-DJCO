@@ -13,7 +13,9 @@ public class CameraPosition : MonoBehaviour {
     public float traumaScale = 2;
     public float traumaDecay = 0.5f;
     public float traumaAngle = 45;
+    public float traumaIntensity = 0.1f;
     public float smoothRatio = 2f;
+
     public Vector3 compensation = Vector3.zero;
 
     private Vector3 targetPos = Vector3.zero;
@@ -55,8 +57,8 @@ public class CameraPosition : MonoBehaviour {
 
         traumaV.x += trauma*trauma * (1f - Mathf.PerlinNoise(Time.time*traumaScale, 0.1f) * 2);
         traumaV.y += trauma*trauma * (1f - Mathf.PerlinNoise(Time.time*traumaScale, 0.9f) * 2);
-        transform.localEulerAngles = new Vector3(10, 0, trauma * trauma * (1f - Mathf.PerlinNoise(Time.time*traumaScale, 0.1f) * 2) * traumaAngle);
-
+        transform.localEulerAngles = new Vector3(10, 0, traumaIntensity * trauma * trauma * (1f - Mathf.PerlinNoise(Time.time*traumaScale, 0.1f) * 2) * traumaAngle);
+        traumaV *= traumaIntensity;
         targetPos = center + compensation;
         
         transform.position = traumaV + Vector3.Lerp(transform.position, targetPos, Time.deltaTime* smoothRatio);
