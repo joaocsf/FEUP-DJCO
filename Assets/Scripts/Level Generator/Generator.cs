@@ -194,6 +194,7 @@ public class Generator : MonoBehaviour
         {
             GameObject obj = GameObject.Instantiate(banana);
             obj.transform.localPosition = new Vector3((Random.Range(0, floorWidth * tilesNumber) - floorWidth / 2) * -1, currentFloor * floorHeight, -0.5f);
+            Debug.Log("Spawn Banana");
         }
     }
 

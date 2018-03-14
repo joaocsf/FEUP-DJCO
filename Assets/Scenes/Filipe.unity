@@ -1876,6 +1876,7 @@ MonoBehaviour:
   traumaScale: 20
   traumaDecay: 0.5
   traumaAngle: 30
+  traumaIntensity: 0.1
   smoothRatio: 2
   compensation: {x: 0.5, y: 2, z: -10}
 --- !u!114 &462694920
@@ -14104,7 +14105,7 @@ MonoBehaviour:
   duskColorFloor: 10
   nightColor: {r: 0, g: 0.041430023, b: 0.1397059, a: 1}
   nightColorFloor: 20
-  banana: {fileID: 1950371400}
+  banana: {fileID: 1213886338118508, guid: 811c549dd25e5d1488f5c08e40e80e59, type: 2}
   maxBananasPerFloor: 2
   bananasSpawnStartFloor: 10
   bananasSpawnPeakFloor: 20
@@ -14114,7 +14115,7 @@ MonoBehaviour:
   trashSpawnStartFloor: 5
   trashSpawnPeakFloor: 50
   firework: {fileID: 1490037372201572, guid: d68961a06e134a545b156133a8933af7, type: 2}
-  initialFireworksPerSecond: 0.1
+  initialFireworksPerSecond: 0.2
   maxFireworksPerSecond: 3
   fireworksSpawnStartFloor: 25
   fireworksSpawnPeakFloor: 75
@@ -14493,11 +14494,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerStatus: {fileID: 672283028}
   enable: 0
---- !u!1 &1950371400 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1213886338118508, guid: 811c549dd25e5d1488f5c08e40e80e59,
-    type: 2}
-  m_PrefabInternal: {fileID: 1218396463}
 --- !u!1001 &1969492982
 Prefab:
   m_ObjectHideFlags: 0

@@ -49,7 +49,7 @@ public class Firework : MonoBehaviour, IEffectorApplierEvents {
 
     public bool OnDelete()
     {
-        GameObject.FindObjectOfType<CameraPosition>().AddTrauma(0.2f);
+        GameObject.FindObjectOfType<CameraPosition>().AddTrauma(0.5f);
         rb.velocity = Vector3.zero;
         return true;
     }
