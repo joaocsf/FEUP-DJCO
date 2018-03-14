@@ -52,12 +52,27 @@ public class Generator : MonoBehaviour
     public Color nightColor = Color.black;
     public int nightColorFloor = 20;
 
-    public GameObject thing;
-    public GameObject floorThing;
-    public float spawnDelta = 1f;
-    public int thingsPerFloor = 2;
 
-    private WaitForSeconds spawnDeltaSeconds;
+    [Header("Spawner - Banana")]
+    public GameObject banana;
+    public int maxBananasPerFloor = 2;
+    public int bananasSpawnStartFloor = 10;
+    public int bananasSpawnPeakFloor = 50;
+
+    [Header("Spawner - Trash")]
+    public GameObject trash;
+    public float initialTrashPerSecond = 0.2f;
+    public float maxTrashPerSecond = 5;
+    public int trashSpawnStartFloor = 5;
+    public int trashSpawnPeakFloor = 50;
+
+    [Header("Spawner - Fireworks")]
+    public GameObject firework;
+    public float initialFireworksPerSecond = 0.1f;
+    public float maxFireworksPerSecond = 3;
+    public int fireworksSpawnStartFloor = 25;
+    public int fireworksSpawnPeakFloor = 75;
+
 
     private enum TileType { Default, Broken, Stairs, Elevator, PowerUp, BrokenPowerUp }
 
@@ -68,7 +83,7 @@ public class Generator : MonoBehaviour
 
     private List<GameObject> floors = new List<GameObject>();
     private List<TileType[]> floorTiles = new List<TileType[]>();
-    private enum BlockType { None, Stairs, StairsSide, StairsUp, Elevator, ElevatorTunnel, ElevatorExit, ElevatorExitStairsSide}
+    private enum BlockType { None, Stairs, StairsSide, StairsUp, Elevator, ElevatorTunnel, ElevatorExit, ElevatorExitStairsSide }
     private BlockType[] tilesBlocked;
 
     private GameObject[] players;
@@ -98,8 +113,9 @@ public class Generator : MonoBehaviour
         alphaKeys[1].time = 1.0F;*/
         gradient.SetKeys(colorKeys, alphaKeys);
 
-        spawnDeltaSeconds = new WaitForSeconds(spawnDelta);
-        StartCoroutine(SpawnThings());
+        //spawnDeltaSeconds = new WaitForSeconds(1f);
+        StartCoroutine(SpawnTrash());
+        StartCoroutine(SpawnFireworks());
 
         tilesBlocked = new BlockType[tilesNumber];
         for (int i = 0; i < initialFloors; i++)
@@ -122,35 +138,62 @@ public class Generator : MonoBehaviour
         {
             AddFloor();
             DeleteFloor();
-            SpawnThingsEachFloor();
+            SpawnBananas();
             if (debug)
                 Debug.Log("New Highest Floor: " + highestFloor);
         }
 
     }
 
-    private IEnumerator SpawnThings()
+
+    private IEnumerator SpawnTrash()
     {
         while (true)
         {
+            float spawnDelta = Mathf.Clamp(
+                    1f * (highestFloor - trashSpawnStartFloor) / (trashSpawnPeakFloor - trashSpawnStartFloor),
+                0f, 1f);
+            spawnDelta = Mathf.Lerp(1f / initialTrashPerSecond, 1f / maxTrashPerSecond, spawnDelta);
             yield return new WaitForSeconds(spawnDelta);
-            if (thing != null)
+            if (trash != null && highestFloor >= trashSpawnStartFloor)
             {
-                GameObject obj = GameObject.Instantiate(thing);
-                obj.transform.localPosition = new Vector3(Random.Range(0, floorWidth * tilesNumber) * -1, currentFloor * floorHeight, -0.5f);
-                Debug.Log("Spawn Thing");
+                GameObject obj = GameObject.Instantiate(trash);
+                obj.transform.localPosition = new Vector3((Random.Range(0, floorWidth * tilesNumber) - floorWidth/2) * -1, (highestFloor + 4) * floorHeight, -0.5f);
+                //Debug.Log("Spawn Trash");
             }
-        } 
+        }
     }
 
-    private void SpawnThingsEachFloor()
+    private IEnumerator SpawnFireworks()
     {
-        if (floorThing == null)
-            return;
-        for (int i = 0; i < thingsPerFloor; i++)
+        while (true)
         {
-            GameObject obj = GameObject.Instantiate(floorThing);
-            obj.transform.localPosition = new Vector3(Random.Range(0, floorWidth * tilesNumber) * -1, currentFloor * floorHeight, -0.5f);
+            float spawnDelta = Mathf.Clamp(
+                    1f * (highestFloor - fireworksSpawnStartFloor) / (fireworksSpawnPeakFloor - fireworksSpawnStartFloor),
+                0f, 1f);
+            spawnDelta = Mathf.Lerp(1f / initialFireworksPerSecond, 1f / maxFireworksPerSecond, spawnDelta);
+            yield return new WaitForSeconds(spawnDelta);
+            if (firework != null && highestFloor >= fireworksSpawnStartFloor)
+            {
+                GameObject obj = GameObject.Instantiate(firework);
+                obj.transform.localPosition = new Vector3((Random.Range(0, floorWidth * tilesNumber) - floorWidth / 2) * -1, (highestFloor - 4) * floorHeight, -0.5f);
+                //Debug.Log("Spawn Trash");
+            }
+        }
+    }
+
+    private void SpawnBananas()
+    {
+        if (banana == null)
+            return;
+        float num_bananas = maxBananasPerFloor *
+                Mathf.Clamp(
+                    1f * (currentFloor - bananasSpawnStartFloor) / (bananasSpawnPeakFloor - bananasSpawnStartFloor),
+                0f, 1f);
+        for (int i = 0; i < num_bananas; i++)
+        {
+            GameObject obj = GameObject.Instantiate(banana);
+            obj.transform.localPosition = new Vector3((Random.Range(0, floorWidth * tilesNumber) - floorWidth / 2) * -1, currentFloor * floorHeight, -0.5f);
         }
     }
 
@@ -389,12 +432,13 @@ public class Generator : MonoBehaviour
     {
         for (int i = (tile - radius); i <= (tile + radius); i++)
         {
-            if (i >= 0 && i < tilesBlocked.Length && tilesBlocked[i] != BlockType.ElevatorTunnel) {
+            if (i >= 0 && i < tilesBlocked.Length && tilesBlocked[i] != BlockType.ElevatorTunnel)
+            {
                 if (tilesBlocked[i] == BlockType.ElevatorExit)
                     tilesBlocked[i] = BlockType.ElevatorExitStairsSide;
                 else
                     tilesBlocked[i] = BlockType.StairsSide;
-                }
+            }
         }
         tilesBlocked[tile] = BlockType.Stairs;
     }
