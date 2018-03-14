@@ -28,7 +28,7 @@ public class EffectorApplier : MonoBehaviour
     {
         if (delayTime < 0) return;
         delayTime-= Time.deltaTime;
-        if (delayTime < 0)
+        if (delayTime < 0 && !destroyed)
             GetComponent<Collider>().enabled = true;
     }
 
