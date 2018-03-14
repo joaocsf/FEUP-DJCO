@@ -59,6 +59,12 @@ public class Generator : MonoBehaviour
     public int bananasSpawnStartFloor = 10;
     public int bananasSpawnPeakFloor = 50;
 
+    [Header("Spawner - Teleport")]
+    public GameObject teleport;
+    public int teleportSpawnStartFloor = 10;
+    [Range(0, 100)]
+    public int teleportChance = 50;
+
     [Header("Spawner - Trash")]
     public GameObject trash;
     public float initialTrashPerSecond = 0.2f;
@@ -139,6 +145,7 @@ public class Generator : MonoBehaviour
             AddFloor();
             DeleteFloor();
             SpawnBananas();
+            SpawnTeleport();
             if (debug)
                 Debug.Log("New Highest Floor: " + highestFloor);
         }
@@ -194,6 +201,26 @@ public class Generator : MonoBehaviour
         {
             GameObject obj = GameObject.Instantiate(banana);
             obj.transform.localPosition = new Vector3((Random.Range(0, floorWidth * tilesNumber) - floorWidth / 2) * -1, currentFloor * floorHeight, -0.5f);
+        }
+    }
+
+    private void SpawnTeleport()
+    {
+        if (teleport == null)
+            return;
+        float num_teleport;
+        if (currentFloor < teleportSpawnStartFloor)
+            num_teleport = 0;
+        else
+        {
+            float chance = 10 - (teleportChance / 10);
+            num_teleport = Mathf.Clamp(Random.Range(0, 10) - chance, 0f, 1f);
+        }
+        for (int i = 0; i < num_teleport; i++)
+        {
+            int lowestFloor = currentFloor - 6;
+            GameObject obj = GameObject.Instantiate(teleport);
+            obj.transform.localPosition = new Vector3((Random.Range(0, floorWidth * tilesNumber) - floorWidth / 2) * -1, (lowestFloor * floorHeight)-1.0f, -0.5f);
         }
     }
 
