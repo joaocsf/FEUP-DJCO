@@ -159,7 +159,7 @@ public class GameController : MonoBehaviour
         Debug.Log(runningPlayers.Count);
         if (runningPlayers.Count == 1)
             State = GameState.Win;
-        else
+        else if(runningPlayers.Count == 0)
             State = GameState.Lose;
     }
 
