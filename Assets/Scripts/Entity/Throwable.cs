@@ -22,7 +22,6 @@ public class Throwable : MonoBehaviour, IEffectorApplierEvents {
     {
         if(useDirection)
             velocity.x *= Mathf.Sign(dir);
-        Debug.Log(velocity);
     }
 
     void FixedUpdate () {
@@ -37,10 +36,10 @@ public class Throwable : MonoBehaviour, IEffectorApplierEvents {
         rb.velocity = velocity;	
 	}
 
-    public bool OnDelete()
+    public float OnDelete()
     {
         rotateObj = null;
-        return true;
+        return 0f;
     }
 
     public void OnPickup()

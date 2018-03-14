@@ -29,7 +29,6 @@ public class CameraSwitch : MonoBehaviour {
         if(secondCamera != oldSecondCamera)
         {
             oldSecondCamera = secondCamera;
-            Debug.Log(secondCamera + " " + oldSecondCamera);
             StartCoroutine(AnimSwap());
         }
 	}

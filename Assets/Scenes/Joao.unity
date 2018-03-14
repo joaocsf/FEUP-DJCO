@@ -1876,6 +1876,7 @@ MonoBehaviour:
   traumaScale: 20
   traumaDecay: 0.5
   traumaAngle: 30
+  traumaIntensity: 0.1
   smoothRatio: 2
   compensation: {x: 0.5, y: 2, z: -10}
 --- !u!114 &462694920
@@ -10419,7 +10420,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4991629843391102, guid: 811c549dd25e5d1488f5c08e40e80e59, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -7.206865
+      value: -7.5368648
       objectReference: {fileID: 0}
     - target: {fileID: 4991629843391102, guid: 811c549dd25e5d1488f5c08e40e80e59, type: 2}
       propertyPath: m_LocalPosition.y
@@ -13456,12 +13457,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 5
       objectReference: {fileID: 0}
-    - target: {fileID: 114607922637368004, guid: 04189e54ff5a3c4498c9cbb5d61c0c83,
-        type: 2}
-      propertyPath: win
-      value: 
-      objectReference: {fileID: 245386335418824638, guid: 75e0544cc28ce7b4e957c6bca47e448a,
-        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 04189e54ff5a3c4498c9cbb5d61c0c83, type: 2}
   m_IsPrefabParent: 0
@@ -14104,10 +14099,20 @@ MonoBehaviour:
   duskColorFloor: 10
   nightColor: {r: 0, g: 0.041430023, b: 0.1397059, a: 1}
   nightColorFloor: 20
-  thing: {fileID: 1982291613833132, guid: 6057df26617992843b558e69195f81be, type: 2}
-  floorThing: {fileID: 1213886338118508, guid: 811c549dd25e5d1488f5c08e40e80e59, type: 2}
-  spawnDelta: 1
-  thingsPerFloor: 2
+  banana: {fileID: 1213886338118508, guid: 811c549dd25e5d1488f5c08e40e80e59, type: 2}
+  maxBananasPerFloor: 2
+  bananasSpawnStartFloor: 10
+  bananasSpawnPeakFloor: 50
+  trash: {fileID: 1982291613833132, guid: 6057df26617992843b558e69195f81be, type: 2}
+  initialTrashPerSecond: 0.2
+  maxTrashPerSecond: 5
+  trashSpawnStartFloor: 5
+  trashSpawnPeakFloor: 50
+  firework: {fileID: 1490037372201572, guid: d68961a06e134a545b156133a8933af7, type: 2}
+  initialFireworksPerSecond: 0.1
+  maxFireworksPerSecond: 3
+  fireworksSpawnStartFloor: 25
+  fireworksSpawnPeakFloor: 75
 --- !u!4 &1754880830
 Transform:
   m_ObjectHideFlags: 0

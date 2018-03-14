@@ -3,7 +3,7 @@ using System.Collections;
 
 public interface IEffectorApplierEvents 
 {
-    bool OnDelete();
+    float OnDelete();
 
     void OnPickup();
 

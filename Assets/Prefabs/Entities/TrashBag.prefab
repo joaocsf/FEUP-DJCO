@@ -163,10 +163,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c3c8bd0c48b95b4c8895943d7939056, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  effector: {fileID: 11400000, guid: 330baf2f0e646e14ba90ba8d1a6db1eb, type: 2}
+  effector: {fileID: 11400000, guid: b420f611129486b43917bbefa5244ea2, type: 2}
   destroyOnOthers: 0
   destroyOnEffect: 1
   delayTime: 0.5
+  autoDestroy: 10
 --- !u!114 &114861781135861864
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -179,7 +180,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   thrust: 2
-  stunTime: 3
   mask:
     serializedVersion: 2
     m_Bits: 256
@@ -196,6 +196,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   disable:
   - {fileID: 1383965214081322}
+  enable: []
   particles:
   - {fileID: 198939378535344174}
   disableCollider: 1
@@ -210,7 +211,7 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.17
+  m_Radius: 0.2
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!135 &135535823266347882
 SphereCollider:
