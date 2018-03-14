@@ -14108,7 +14108,7 @@ MonoBehaviour:
   maxBananasPerFloor: 2
   bananasSpawnStartFloor: 10
   bananasSpawnPeakFloor: 20
-  trash: {fileID: 0}
+  trash: {fileID: 1982291613833132, guid: 6057df26617992843b558e69195f81be, type: 2}
   initialTrashPerSecond: 0.2
   maxTrashPerSecond: 7
   trashSpawnStartFloor: 5
