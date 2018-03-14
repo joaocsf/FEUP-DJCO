@@ -12,6 +12,7 @@ public class DisplacementController : MonoBehaviour
 
     void Start()
     {
+        transform.localPosition -= Vector3.up * Random.Range(0f, 0.5f);
         mat = GetComponent<Renderer>().material;
     }
 

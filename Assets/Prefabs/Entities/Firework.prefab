@@ -379,7 +379,7 @@ MonoBehaviour:
   loop: 0
   pitchHigh: 0.5
   pitchLow: 2
-  time: 2
+  time: 1.5
 --- !u!114 &114941008961017064
 MonoBehaviour:
   m_ObjectHideFlags: 1
