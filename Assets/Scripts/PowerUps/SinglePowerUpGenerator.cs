@@ -6,14 +6,28 @@ public class SinglePowerUpGenerator : MonoBehaviour {
     public PowerUp powerup;
     public float thrust = 3f;
 
+    public ParticleSystem ps;
+
     private Rigidbody rb;
 
     void Start()
     {
+        
         rb = GetComponent<Rigidbody>();
+        rb.AddTorque(Vector3.up * 5);
     }
 
-        public PowerUp GetPowerUp(GameObject player)
+    private void OnDestroy()
+    {
+        if (ps == null)
+            return;
+        ps.transform.parent = null;
+        ps.Play();
+        ps.transform.eulerAngles = new Vector3(-90, 0, 0);
+        Destroy(ps.gameObject, 1f);
+    }
+
+    public PowerUp GetPowerUp(GameObject player)
     {
         PlayerStatus ps = player.GetComponent<PlayerStatus>();
 
